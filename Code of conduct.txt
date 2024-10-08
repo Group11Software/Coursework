@@ -1,0 +1,39 @@
+Code of conduct
+
+
+What are we?
+
+We are Group 11, we strive to produce a product that will meet all requirements from the specifications given by our valued customers and improve the team and environment bit by bit through time and effort.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Beliefs
+
+We are to be humble and respect all customers and employees no matter past actions.
+We are welcoming and respectful to each other.
+We take in all inputs and strive to improve all mistakes.
+Failure leads to greater products produced.
+Focusing on the tasks which must be done first above all.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Examples of failure to follow beliefs:
+Loud and rude behavior.
+Disrupting the work environment.
+Disruptive actions that can injure or potentially put someone in danger.
+Behavior that could affect someone's mood or mental health.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Responsibilities
+
+Every member of the group is responsible for completing their part of the project, it is ensured that everyone completes their part or it shall lead to failure not to the product but the team.
+
+Members are able to edit, write, read, remove and add files into the repositories.
+
+Members shall be present for the code reviews and keep a tab on all tasks done by them to present to the customer /  lecturer.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scope
+
+We are to be able to produce a product that shows the outlines of the population in the world and showcase reports by category set or not set by the user as an output.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+I hereby agree to the usage of the code of conduct and realize that failure to follow may result in punishments that may affect the entirety of Group 11 and its development and will uphold responsibilities under my name.
+
+
