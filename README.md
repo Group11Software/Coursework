@@ -1,6 +1,7 @@
 hello is this thing on
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/40682339/Group11Software/main.yml?branch=master)
+![Workflow Status](https://github.com/Group11Software/Coursework/actions/workflows/main.yml/badge.svg)
+
 
 
 [![LICENSE](https://img.shields.io/github/license/kester99/Coursework.svg?style=flat-square)](https://github.com/40682339/Coursework/blob/master/LICENSE)
