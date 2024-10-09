@@ -1,3 +1,4 @@
+
 name: A workflow for my Hello World App
 on: push
 
@@ -26,4 +27,3 @@ jobs:
         run: docker run --network Group11Coursework --name semcontainer group11coursework
       - name: view logs
         run: docker logs semcontainer
-
