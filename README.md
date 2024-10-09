@@ -1,6 +1,6 @@
 hello is this thing on
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Group11Software/Coursework/main.yml?branch=master)
+![GitHub Workflow Status (branch)](https://img.shields.io/.github/actions/workflow/status/Group11Software/Coursework/main.yml?branch=master)
 
 
 
