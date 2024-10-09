@@ -1,6 +1,7 @@
 hello is this thing on
 
-![Github Workflow Status](https://github.com/Group11Software/Coursework/actions/workflows/main.yml/badge.svg)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Group11Software/Coursework/main.yml?label=Build)](https://github.com/Group11Software/Coursework/actions/workflows/main.yml)
+
 
 
 
