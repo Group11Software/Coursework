@@ -1,6 +1,6 @@
 hello is this thing on
 
-![Workflow Status](https://github.com/Group11Software/Coursework/actions/workflows/main.yml/badge.svg)
+![Workflow Status](https://github.com/Group11Software/Coursework/actions/workflows/main.yml/branch=master)
 
 
 
