@@ -23,7 +23,7 @@ jobs:
       - name: Build
         run: docker build -t group11coursework .
       - name: Run image
-        run: docker run --network group11coursework --name semcontainer group11coursework
+        run: docker run --network group11coursework --name semcontainer Group11Coursework
       - name: view logs
         run: docker logs semcontainer
 
