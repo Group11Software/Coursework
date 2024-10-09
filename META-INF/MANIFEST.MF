@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: TESTPACKAGE.App
+Class-Path: mongodb-driver-3.6.4.jar bson-3.6.4.jar mongodb-driver-core-
+ 3.6.4.jar
+
