@@ -1,6 +1,6 @@
 hello is this thing on
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/Group11Software/Coursework/main.yml?branch=master)
+![Build Status](https://img.shields.io/github/actions/workflow/status/40682339/Coursework/main.yml?branch=master&label=Build)
 
 
 
