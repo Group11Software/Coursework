@@ -8,6 +8,7 @@ import org.bson.Document;
 
 public class App
 {
+
     public static void main(String[] args)
     {
         // Connect to MongoDB on local system - we're using the new network mongo-dbserver
