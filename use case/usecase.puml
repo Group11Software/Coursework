@@ -1,0 +1,91 @@
+@startuml
+
+actor MGR as "Admin"
+
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "Get cities in a respected area \norganised smallest to largest"
+
+    usecase UCa as "Print cities for specific continent"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+@startuml
+
+actor MGR as "admin"
+
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "Get all the countries organised by largest to smallest in each area"
+
+    usecase UCa as "Print countries for specific continent"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+@startuml
+
+actor MGR as "Admin"
+
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "Show the population of people living in and out of cities in each respected area"
+
+    usecase UCa as "Print population in and out of cities"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+@startuml
+
+actor MGR as "Admin"
+
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "all the capital cities in the world organised by population from largest to smallest"
+
+    usecase UCa as "Print capital cities for specific continent"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+@startuml
+
+actor MGR as "Admin"
+
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "provide the number of people who speak a set amount of languages from smallest to largest"
+
+    usecase UCa as "Print number of people who speak a set amount"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
+

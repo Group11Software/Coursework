@@ -1,0 +1,17 @@
+@startuml
+
+actor MGR as "Manager"
+
+rectangle Database
+
+rectangle "SQL environment" {
+    usecase UC4 as "Get cities in a continent \norganised smallest to largest"
+
+    usecase UCa as "Print cities for specific continent"
+
+    MGR - UC4
+    UC4 ..> UCa : include
+    UC4 - Database
+}
+
+@enduml
