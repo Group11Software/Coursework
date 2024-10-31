@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/classes/TESTPACKAGE.App /tmp/TESTPACKAGE
+COPY ./target/Group11Coursework-1.0-SNAPSHOT-jar-with-dependencies.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "TESTPACKAGE.App", "db:3306", "10000"]
+ENTRYPOINT ["java", "-jar", "Group11Coursework-1.0-SNAPSHOT-jar-with-dependencies.jar", "db:3306", "10000"]
