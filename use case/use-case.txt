@@ -6,6 +6,7 @@ Population of people living in and not in cities in each area
 As a manager I want to produce a report showing all showing the Population of people living in and not in cities in each area
 
 #Scope and Level
+produce a report for the company
 
 #Preconditions
 The SQL database needs to be up to date and contain the data for all the people in cities and people not in cities for each area
@@ -77,6 +78,7 @@ none
 USE CASE #	Show the population of people living in and out of cities in each respected area
 Goal in Context	As a manager I want to produce a report showing all population of people living in and out of cities in each respected area in order to help data analysts gain more insight.
 Scope & Level
+produce a report for the company
 Preconditions	The SQL database needs to be up to date and contain the data for all cities and populations for each city
 
 The admin needs permissions so that they can access the data via the system
@@ -100,6 +102,7 @@ SUB-VARIATIONS
 USE CASE #	Show the capital cities in each respected country  organising the population from largest to smallest
 Goal in Context
 Scope & Level
+produce a report for the company
 Preconditions	The SQL database needs to be up to date and contain the data for all capital cities and populations for each country
 
 The admin needs permissions so that they can access the data via the system
@@ -123,6 +126,7 @@ SUB-VARIATIONS
 USE CASE #	Producing a report showing how many people speak a range languages from greatest to smallest  and including the percentage of world population
 Goal in Context
 Scope & Level
+produce a report for the company
 Preconditions	The SQL database needs to be up to date and contain the data for all countries and populations for each country
 
 The admin needs permissions so that they can access the data via the system
