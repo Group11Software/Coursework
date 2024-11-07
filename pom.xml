@@ -44,6 +44,7 @@
         </plugins>
     </build>
 
+    <!--Dependencies set up for the mysql connector -->
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
