@@ -1,37 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- version of the xml -->
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!-- declaration of the group id artifact and version -->
+
     <groupId>org.example</groupId>
     <artifactId>Group11Coursework</artifactId>
-    <!--current version of our project -->
-    <version>0.1.0.2</version>
-    <!-- the maven properties -->
+    <version>1.0-SNAPSHOT</version>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
     <build>
         <plugins>
             <plugin>
-                <!--the group id and the artifact id -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <!-- configuration version(software)-->
                 <version>3.3.0</version>
                 <configuration>
                     <archive>
                         <manifest>
-                            <!-- the main class name (had to add .app to make the workflow run )-->
-                            <mainClass>TESTPACKAGE.App</mainClass>
+                            <mainClass>TESTPACKAGE</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
-
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                 </configuration>
@@ -48,12 +44,12 @@
         </plugins>
     </build>
 
+    <!--Dependencies set up for the mysql connector -->
     <dependencies>
         <dependency>
-            <!-- mongo integration dependencies -->
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
-            <version>3.6.4</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
     </dependencies>
 
