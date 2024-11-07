@@ -1,0 +1,97 @@
+/*Use case story1 - Population of the world from highest to lowest */
+
+select Name, Population
+from country
+ORDER BY Population DESC ;
+
+
+/*Highest population of each country by continent */
+select Name , Population
+from country
+WHERE Continent = 'Asia'
+ORDER BY Population DESC ;
+
+/* sorts all in the countries in the continent Europe*/
+select Name , Population
+from country
+WHERE Continent = 'Europe'
+ORDER BY Population DESC ;
+
+
+select Name , Population
+from country
+WHERE Continent = 'North America'
+ORDER BY Population DESC ;
+
+select Name , Population
+from country
+WHERE Continent = 'South America'
+ORDER BY Population DESC ;
+
+select Name , Population
+from country
+WHERE Continent = 'Africa'
+ORDER BY Population DESC ;
+
+select Name , Population
+from country
+WHERE Continent = 'Oceania'
+ORDER BY Population DESC ;
+
+select Name , Population
+from country
+WHERE Continent = 'Antarctica'
+ORDER BY Population DESC ;
+
+/* All the countries in a region organised largest to smallest*/
+select Name , Population
+from country
+WHERE Region = 'Middle East'
+ORDER BY Population DESC ;
+
+
+
+/* sorts all the cities by population */
+select city.Name, city.Population
+from city
+ORDER BY population DESC ;
+
+/* Sorts all the cities in the continent asia  have to link tables together via country code the foreign key*/
+/* sorts via highest to lowest*/
+SELECT city.Name, city.Population
+from city,country
+WHERE country.Continent = 'Asia' AND city.CountryCode = country.Code
+GROUP BY city.Name, city.Population
+ORDER BY city.population DESC ;
+
+
+/* sorts all the cities in the region of the middle east from highest to lowest*/
+SELECT city.Name, city.Population, country.region
+from city
+JOIN country
+ON city.CountryCode = country.Code
+WHERE country.Region = 'Middle east'
+ORDER BY city.population DESC ;
+
+
+/* sorts the cities by highest to lowest in country Bangkok*/
+SELECT city.Name, city.Population, country.Name
+from city,country
+WHERE country.Name = 'Thailand'  AND city.CountryCode = country.Code
+ORDER BY city.population DESC ;
+
+/* sorts the cities by highest to lowest in the district new south wales */
+SELECT city.Name, city.Population, city.District
+from city
+WHERE city.District = 'New South Wales'
+ORDER BY city.population DESC ;
+
+/* */
+SELECT city.name, city.Population , country.Capital
+FROM city, country
+WHERE city.CountryCode = country.code
+ORDER BY country.capital DESC;
+
+
+
+
