@@ -46,7 +46,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>TESTPACKAGE</mainClass>
+                            <mainClass>TESTPACKAGE.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
