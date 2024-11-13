@@ -1,6 +1,12 @@
 package TESTPACKAGE;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+
 
 public class App
 {
@@ -57,6 +63,23 @@ public class App
             {
                 System.out.println("Error closing connection to database");
             }
+
+
+        }
+
+    }
+
+    public void printCityReport(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("No cities found");
+            return;
+        }
+        for(City city : cities){
+            System.out.println(city);
         }
     }
+
 }
+
+
+
