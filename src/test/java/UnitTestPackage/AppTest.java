@@ -1,5 +1,6 @@
-package TESTPACKAGE;
+package UnitTestPackage;
 
+import TESTPACKAGE.App;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
