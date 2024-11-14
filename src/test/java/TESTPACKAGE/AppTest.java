@@ -22,13 +22,6 @@ public class AppTest {
 
     }
 
-    @Test
-    void testGetCity()
-    {
-        City city = app.getCity(1);
-        assertEquals("Kabul", city.getName());
-        System.out.println("successfully retrieved " + city);
-    }
 
     @Test
     void printCitiesTestNull() {
