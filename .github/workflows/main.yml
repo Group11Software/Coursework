@@ -30,8 +30,8 @@ jobs:
           distribution: 'adopt'
       - name: Integration Tests
         run: |
-          docker build -t database ./db 
-          docker run --name world -dp 33060:3306 database
+          docker build -t database ./world-db 
+          docker run --name db -dp 33060:3306 database
           mvn -Dtest=TESTPACKAGE.AppTest test
           docker stop world
           docker rm world
