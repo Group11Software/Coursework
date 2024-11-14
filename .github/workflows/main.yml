@@ -32,7 +32,7 @@ jobs:
         run: |
           docker build -t database ./world-db 
           docker run --name db -dp 33060:3306 database
-          mvn -Dtest=TESTPACKAGE.AppTest test
+          mvn -Dtest=TESTPACKAGE.AppIntegrationTest test
           docker stop db
           docker rm db
           docker image rm database
