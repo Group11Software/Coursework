@@ -61,6 +61,33 @@ public class App
             }
         }
     }
+    public City getCity(int id) {
+        City city = null;
+        try {
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String sql = "select * from city where ID = " + id;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(sql);
+            //cycle
+            if (rset.next()) {
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                city = new City(id, name, countryCode, district, population);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+        return  city;
+    }
     public void printCityReport(ArrayList<City> cities){
         if(cities == null){
             System.out.println("No cities found");
