@@ -33,8 +33,8 @@ jobs:
           docker build -t database ./world-db 
           docker run --name db -dp 33060:3306 database
           mvn -Dtest=TESTPACKAGE.AppTest test
-          docker stop world
-          docker rm world
+          docker stop db
+          docker rm db
           docker image rm database
   build:
     name: Hello world action
