@@ -27,15 +27,7 @@ public class App
 
     }
 
-    public void printCityReport(ArrayList<City> cities){
-        if(cities == null){
-            System.out.println("No cities found");
-            return;
-        }
-        for(City city : cities){
-            System.out.println(city);
-        }
-    }
+
 
     public void connect(String conString, int delay) {
         try {
@@ -69,6 +61,16 @@ public class App
             }
         }
     }
+    public void printCityReport(ArrayList<City> cities){
+        if(cities == null){
+            System.out.println("No cities found");
+            return;
+        }
+        for(City city : cities){
+            System.out.println(city);
+        }
+    }
+
     /**
      * Disconnect from the MySQL database.
      */
