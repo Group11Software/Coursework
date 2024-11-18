@@ -25,12 +25,70 @@ public class App {
             //docker parameters passed from Dockerfile
             a.connect(args[0], Integer.parseInt(args[1]));
         }
+        a.printCityReport(a.getCities());
+        a.report2();
 
         // Disconnect from database
         a.disconnect();
     }
+    public ArrayList<City> getCities() {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
 
-    public void report2() throws IOException {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String sql = "select * from city";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(sql);
+            //cycle
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                cities.add(city);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+        return  cities;
+    }
+
+    public City getCity(int id) {
+        City city = null;
+        try {
+
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String sql = "select * from city where ID = " + id;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(sql);
+            //cycle
+            if (rset.next()) {
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                city = new City(id, name, countryCode, district, population);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+        return  city;
+    }
+
+    public void report2() {
         StringBuilder sb = new StringBuilder();
         try {
             // Create an SQL statement
@@ -56,9 +114,8 @@ public class App {
             System.out.println("Failed to get details");
             return;
         }
-
-        System.out.println(sb.toString());
     }
+
 
     public void connect(String conString, int delay) {
         try {
@@ -69,7 +126,7 @@ public class App {
             System.exit(-1);
         }
 
-        int retries = 30;
+        int retries = 10;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
