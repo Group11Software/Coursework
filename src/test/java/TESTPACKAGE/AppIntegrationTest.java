@@ -18,11 +18,19 @@ public class AppIntegrationTest
     }
 
     @Test
-    void hello()
+    void testGetCity()
     {
-        System.out.println("Hello world");
-
+        City city = app.getCity(1);
+        assertEquals("Kabul", city.getName());
+        System.out.println("successfully retrieved " + city);
     }
 
+    @Test
+    void testGetPopulation()
+    {
+        City city = app.getCity(1);
+        assertEquals("Kabul", city.getName());
+        System.out.println("successfully retrieved " + city.getPopulation());
+    }
 
 }

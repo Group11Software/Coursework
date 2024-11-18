@@ -133,8 +133,6 @@ public class App {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
-                //Added allowPublicKeyRetrieval=true to get Integration Tests
-                // to work. Possibly due to accessing from another class?
                 con = DriverManager.getConnection("jdbc:mysql://" + conString
                         + "/world?allowPublicKeyRetrieval=true&useSSL"
                         + "=false", "root", "example");
