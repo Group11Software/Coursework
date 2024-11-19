@@ -173,8 +173,80 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+    public ArrayList<City> getCitiesByContinent(String continent) {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.* " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = '" + continent + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                cities.add(city);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+        return cities;
+    }
+    public ArrayList<City> getAsianCitiesSortedByPopulation() {
+        ArrayList<City> asianCities = getCitiesByContinent("Asia");
+        if (asianCities != null) {
+            asianCities.sort((city1, city2) -> Long.compare(city2.getPopulation(), city1.getPopulation()));
+        }
+        return asianCities;
+    }
+    public void generateNorthAmericaCitiesReport() {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.* " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Region = 'North America' " +
+                    "ORDER BY city.Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                cities.add(city);
+            }
+
+            StringBuilder report = new StringBuilder();
+            report.append("Cities in North America sorted by population:\n");
+            for (City city : cities) {
+                report.append(city.getName())
+                        .append(" (")
+                        .append(city.getCountryCode())
+                        .append("): ")
+                        .append(city.getPopulation())
+                        .append("\n");
+            }
+            new File("./output/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/NorthAmericaCitiesReport.txt"));
+            writer.write(report.toString());
+            writer.close();
+            System.out.println(report.toString());
+        } catch (Exception e) {
+            System.out.println("Error generating North America cities report: " + e.getMessage());
+        }
+    }
+
+
+
 
 }
-
-
-

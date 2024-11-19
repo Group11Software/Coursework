@@ -1,0 +1,328 @@
+Cities in North America sorted by population:
+New York (USA): 8008278
+Los Angeles (USA): 3694820
+Chicago (USA): 2896016
+Houston (USA): 1953631
+Philadelphia (USA): 1517550
+Phoenix (USA): 1321045
+San Diego (USA): 1223400
+Dallas (USA): 1188580
+San Antonio (USA): 1144646
+Montréal (CAN): 1016376
+Detroit (USA): 951270
+San Jose (USA): 894943
+Indianapolis (USA): 791926
+San Francisco (USA): 776733
+Calgary (CAN): 768082
+Jacksonville (USA): 735167
+Columbus (USA): 711470
+Toronto (CAN): 688275
+Austin (USA): 656562
+Baltimore (USA): 651154
+Memphis (USA): 650100
+North York (CAN): 622632
+Winnipeg (CAN): 618477
+Edmonton (CAN): 616306
+Mississauga (CAN): 608072
+Milwaukee (USA): 596974
+Scarborough (CAN): 594501
+Boston (USA): 589141
+Washington (USA): 572059
+Nashville-Davidson (USA): 569891
+El Paso (USA): 563662
+Seattle (USA): 563374
+Denver (USA): 554636
+Charlotte (USA): 540828
+Fort Worth (USA): 534694
+Portland (USA): 529121
+Vancouver (CAN): 514008
+Oklahoma City (USA): 506132
+Tucson (USA): 486699
+New Orleans (USA): 484674
+Las Vegas (USA): 478434
+Cleveland (USA): 478403
+Long Beach (USA): 461522
+Albuquerque (USA): 448607
+Kansas City (USA): 441545
+Fresno (USA): 427652
+Virginia Beach (USA): 425257
+Atlanta (USA): 416474
+Sacramento (USA): 407018
+Oakland (USA): 399484
+Mesa (USA): 396375
+Tulsa (USA): 393049
+Omaha (USA): 390007
+Minneapolis (USA): 382618
+Honolulu (USA): 371657
+Miami (USA): 362470
+Colorado Springs (USA): 360890
+Etobicoke (CAN): 348845
+Saint Louis (USA): 348189
+Wichita (USA): 344284
+London (CAN): 339917
+Santa Ana (USA): 337977
+Hamilton (CAN): 335614
+Ottawa (CAN): 335277
+Pittsburgh (USA): 334563
+Arlington (USA): 332969
+Cincinnati (USA): 331285
+Laval (CAN): 330393
+Anaheim (USA): 328014
+Toledo (USA): 313619
+Surrey (CAN): 304477
+Tampa (USA): 303447
+Brampton (CAN): 296711
+Buffalo (USA): 292648
+Saint Paul (USA): 287151
+Corpus Christi (USA): 277454
+Aurora (USA): 276393
+Raleigh (USA): 276093
+Newark (USA): 273546
+Lexington-Fayette (USA): 260512
+Anchorage (USA): 260283
+Louisville (USA): 256231
+Riverside (USA): 255166
+Saint Petersburg (USA): 248232
+Bakersfield (USA): 247057
+Stockton (USA): 243771
+Birmingham (USA): 242820
+Jersey City (USA): 240055
+Norfolk (USA): 234403
+Baton Rouge (USA): 227818
+Hialeah (USA): 226419
+Lincoln (USA): 225581
+Greensboro (USA): 223891
+Plano (USA): 222030
+Rochester (USA): 219773
+Glendale (USA): 218812
+Akron (USA): 217074
+Garland (USA): 215768
+Madison (USA): 208054
+Windsor (CAN): 207588
+Fort Wayne (USA): 205727
+Fremont (USA): 203413
+Scottsdale (USA): 202705
+Montgomery (USA): 201568
+Shreveport (USA): 200145
+Augusta-Richmond County (USA): 199775
+Lubbock (USA): 199564
+Chesapeake (USA): 199184
+Mobile (USA): 198915
+Des Moines (USA): 198682
+Grand Rapids (USA): 197800
+Richmond (USA): 197790
+Yonkers (USA): 196086
+Spokane (USA): 195629
+Glendale (USA): 194973
+Saskatoon (CAN): 193647
+Tacoma (USA): 193556
+Irving (USA): 191615
+Kitchener (CAN): 189959
+Huntington Beach (USA): 189594
+Markham (CAN): 189098
+Modesto (USA): 188856
+Durham (USA): 187035
+Columbus (USA): 186291
+Orlando (USA): 185951
+Boise City (USA): 185787
+Winston-Salem (USA): 185776
+San Bernardino (USA): 185401
+Jackson (USA): 184256
+Little Rock (USA): 183133
+Salt Lake City (USA): 181743
+Reno (USA): 180480
+Regina (CAN): 180400
+Newport News (USA): 180150
+Burnaby (CAN): 179209
+Chandler (USA): 176581
+Laredo (USA): 176576
+Henderson (USA): 175381
+Arlington (USA): 174838
+Knoxville (USA): 173890
+Amarillo (USA): 173627
+Providence (USA): 173618
+Chula Vista (USA): 173556
+Worcester (USA): 172648
+Oxnard (USA): 170358
+Québec (CAN): 167264
+Dayton (USA): 166179
+Garden Grove (USA): 165196
+Oceanside (USA): 161029
+Tempe (USA): 158625
+Huntsville (USA): 158216
+Ontario (USA): 158007
+Chattanooga (USA): 155554
+York (CAN): 154980
+Fort Lauderdale (USA): 152397
+Springfield (USA): 152082
+Springfield (USA): 151580
+Santa Clarita (USA): 151088
+Salinas (USA): 151060
+Tallahassee (USA): 150624
+Rockford (USA): 150115
+Pomona (USA): 149473
+Metairie (USA): 149428
+Paterson (USA): 149222
+Overland Park (USA): 149080
+Richmond (CAN): 148867
+Vaughan (CAN): 147889
+Santa Rosa (USA): 147595
+Syracuse (USA): 147306
+Kansas City (USA): 146866
+Hampton (USA): 146437
+Burlington (CAN): 145150
+Lakewood (USA): 144126
+Vancouver (USA): 143560
+Irvine (USA): 143072
+Aurora (USA): 142990
+Moreno Valley (USA): 142381
+Pasadena (USA): 141674
+Oshawa (CAN): 140173
+Hayward (USA): 140030
+Brownsville (USA): 139722
+Bridgeport (USA): 139529
+Hollywood (USA): 139357
+Oakville (CAN): 139192
+Warren (USA): 138247
+Torrance (USA): 137946
+Eugene (USA): 137893
+Pembroke Pines (USA): 137427
+Salem (USA): 136924
+Saint Catharines (CAN): 136216
+Pasadena (USA): 133936
+Escondido (USA): 133559
+Sunnyvale (USA): 131760
+Savannah (USA): 131510
+Fontana (USA): 128929
+Orange (USA): 128821
+Naperville (USA): 128358
+Alexandria (USA): 128283
+Longueuil (CAN): 127977
+Rancho Cucamonga (USA): 127743
+Grand Prairie (USA): 127427
+East Los Angeles (USA): 126379
+Fullerton (USA): 126003
+Corona (USA): 124966
+Flint (USA): 124943
+Paradise (USA): 124682
+Mesquite (USA): 124523
+Sterling Heights (USA): 124471
+Sioux Falls (USA): 123975
+New Haven (USA): 123626
+Topeka (USA): 122377
+Concord (USA): 121780
+Evansville (USA): 121582
+Hartford (USA): 121578
+Fayetteville (USA): 121015
+Cedar Rapids (USA): 120758
+Elizabeth (USA): 120568
+Lansing (USA): 119128
+Lancaster (USA): 118718
+Fort Collins (USA): 118652
+Coral Springs (USA): 117549
+Stamford (USA): 117083
+Thousand Oaks (USA): 117005
+Vallejo (USA): 116760
+Palmdale (USA): 116670
+Richmond Hill (CAN): 116428
+Columbia (USA): 116278
+El Monte (USA): 115965
+Abilene (USA): 115930
+Thunder Bay (CAN): 115913
+North Las Vegas (USA): 115488
+Nepean (CAN): 115100
+Cape Breton (CAN): 114733
+East York (CAN): 114034
+Ann Arbor (USA): 114024
+Halifax (CAN): 113910
+Beaumont (USA): 113866
+Waco (USA): 113726
+Macon (USA): 113336
+Independence (USA): 113288
+Peoria (USA): 112936
+Inglewood (USA): 112580
+Springfield (USA): 111454
+Simi Valley (USA): 111351
+Lafayette (USA): 110257
+Gilbert (USA): 109697
+Carrollton (USA): 109576
+Bellevue (USA): 109569
+Cambridge (CAN): 109186
+West Valley City (USA): 108896
+Clarksville (USA): 108787
+Costa Mesa (USA): 108724
+Peoria (USA): 108364
+South Bend (USA): 107789
+Downey (USA): 107323
+Gloucester (CAN): 107314
+Waterbury (USA): 107271
+Manchester (USA): 107006
+Allentown (USA): 106632
+McAllen (USA): 106414
+Joliet (USA): 106221
+Abbotsford (CAN): 105403
+Lowell (USA): 105167
+Provo (USA): 105166
+West Covina (USA): 105080
+Wichita Falls (USA): 104197
+Erie (USA): 103717
+Daly City (USA): 103621
+Guelph (CAN): 103593
+Citrus Heights (USA): 103455
+Norwalk (USA): 103298
+Gary (USA): 102746
+Berkeley (USA): 102743
+Santa Clara (USA): 102361
+Green Bay (USA): 102313
+Cape Coral (USA): 102286
+Arvada (USA): 102153
+Pueblo (USA): 102121
+Saint John´s (CAN): 101936
+Sandy (USA): 101853
+Coquitlam (CAN): 101820
+Athens-Clarke County (USA): 101489
+Saanich (CAN): 101388
+Cambridge (USA): 101355
+Westminster (USA): 100940
+San Buenaventura (USA): 100916
+Gatineau (CAN): 100702
+Portsmouth (USA): 100565
+Livonia (USA): 100545
+Burbank (USA): 100316
+Clearwater (USA): 99936
+Midland (USA): 98293
+Davenport (USA): 98256
+Mission Viejo (USA): 98049
+Miami Beach (USA): 97855
+Delta (CAN): 95411
+Sunrise Manor (USA): 95362
+New Bedford (USA): 94780
+El Cajon (USA): 94578
+Norman (USA): 94193
+Richmond (USA): 94100
+Albany (USA): 93994
+Brockton (USA): 93653
+Roanoke (USA): 93357
+Billings (USA): 92988
+Compton (USA): 92864
+Sudbury (CAN): 92686
+Gainesville (USA): 92291
+Fairfield (USA): 92256
+Arden-Arcade (USA): 92040
+San Mateo (USA): 91799
+Visalia (USA): 91762
+Boulder (USA): 91238
+Cary (USA): 91213
+Santa Monica (USA): 91084
+Fall River (USA): 90555
+Kenosha (USA): 89447
+Kelowna (CAN): 89442
+Elgin (USA): 89408
+Odessa (USA): 89293
+Barrie (CAN): 89269
+Carson (USA): 89089
+Charleston (USA): 89063
+Nuuk (GRL): 13445
+Saint-Pierre (SPM): 5808
+Saint George (BMU): 1800
+Hamilton (BMU): 1200
