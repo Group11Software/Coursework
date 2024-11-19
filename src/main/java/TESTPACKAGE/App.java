@@ -160,13 +160,17 @@ public class App {
             }
         }
     }
-    public void printCityReport(ArrayList<City> cities){
-        if(cities == null){
+    public void printCityReport(ArrayList<City> cities) {
+        if (cities == null) {
             System.out.println("No cities found");
             return;
         }
-        for(City city : cities){
-            System.out.println(city);
+
+        cities.sort((city1, city2) -> Long.compare(city2.getPopulation(), city1.getPopulation()));
+
+
+        for (City city : cities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
 
