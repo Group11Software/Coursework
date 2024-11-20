@@ -31,6 +31,10 @@ public class AppIntegrationTest {
         System.out.println("Successfully retrieved population: " + city.getPopulation());
     }
 
+    /**
+     * All the cities in the world sorted by population.
+     */
+
     @Test
     void CityLargestToSmallest() {
         ArrayList<City> cities = app.getCities();
@@ -49,6 +53,10 @@ public class AppIntegrationTest {
                     "Cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All cities in the continent Asia sorted by population.
+     */
     @Test
     void CityLargestToSmallestAsia() {
         // Use the new method to get Asian cities sorted by population
@@ -69,6 +77,9 @@ public class AppIntegrationTest {
         }
     }
 
+    /**
+     * Integration test for - All cities in a region sorted by population, ours being North America
+     */
     @Test
     public void testNorthAmericaCitiesReport() {
         app.generateNorthAmericaCitiesReport();
@@ -92,6 +103,10 @@ public class AppIntegrationTest {
             assertTrue(populations.get(i - 1) >= populations.get(i), "Cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All cities in a country ours being the UK, sorted by population
+     */
     @Test
     void testUKCitiesReport() {
         app.generateUKCitiesReport();
@@ -105,6 +120,10 @@ public class AppIntegrationTest {
                     "Cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All cities in a district, ours being Kyoto sorted by population
+     */
     @Test
     void testKyotoDistrictCitiesReport() {
         app.generateKyotoDistrictCitiesReport();
@@ -118,6 +137,10 @@ public class AppIntegrationTest {
                     "Cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All capitals cities in a region sorted by population
+     */
     @Test
     void testCapitalCitiesReportByRegion() {
         ArrayList<City> capitalCities = app.getCapitalCitiesByRegion("British Islands");
@@ -136,6 +159,10 @@ public class AppIntegrationTest {
                     "Capital cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All capitals in a continent sorted by popualtion
+     */
     @Test
     void testCapitalCitiesReportByContinent() {
         ArrayList<City> capitalCities = app.getCapitalCitiesByContinent("Europe");
@@ -154,6 +181,10 @@ public class AppIntegrationTest {
                     "Capital cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - All capital cities in the world sorted by population
+     */
     @Test
     void testAllCapitalCitiesSortedByPopulation() {
         ArrayList<City> capitalCities = app.getAllCapitalCitiesSortedByPopulation();
