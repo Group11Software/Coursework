@@ -28,6 +28,9 @@ public class App {
         // Disconnect from database
         a.disconnect();
     }
+    /**
+     * This connects to the city.java and gets the cities from the world.sql
+     */
     public ArrayList<City> getCities() {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -56,7 +59,9 @@ public class App {
         }
         return  cities;
     }
-
+    /**
+     *Get city method used to generate the highest to lowest population report
+     */
     public City getCity(int id) {
         City city = null;
         try {
@@ -84,6 +89,9 @@ public class App {
         }
         return  city;
     }
+    /**
+     * Example report received from devops3
+     */
 
     public void report2() {
         StringBuilder sb = new StringBuilder();
@@ -108,6 +116,9 @@ public class App {
         }
     }
 
+    /**
+     * Connects to the database
+     */
     public void connect(String conString, int delay) {
         try {
             // Load Database driver
@@ -151,6 +162,10 @@ public class App {
             }
         }
     }
+    /**
+     * prints the city of all cities greatests to lowest
+     */
+
     public void printCityReport(ArrayList<City> cities) {
         if (cities == null) {
             System.out.println("No cities found");
@@ -164,6 +179,10 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+
+    /**
+     * All cities by continent generated
+     */
     public ArrayList<City> getCitiesByContinent(String continent) {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -189,6 +208,10 @@ public class App {
         }
         return cities;
     }
+
+    /**
+     * Getting all Asian cities population report from highest to lowest
+     */
     public ArrayList<City> getAsianCitiesSortedByPopulation() {
         ArrayList<City> asianCities = getCitiesByContinent("Asia");
         if (asianCities != null) {
@@ -196,6 +219,11 @@ public class App {
         }
         return asianCities;
     }
+
+
+    /**
+     * Method and Report on region North Americas cities greatest to lowest
+     */
     public void generateNorthAmericaCitiesReport() {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -225,6 +253,11 @@ public class App {
             System.out.println("Error generating North America cities report: " + e.getMessage());
         }
     }
+
+
+    /**
+     * Method for sorting out UK cities from greatest to lowest
+     */
     public ArrayList<City> getUKCitiesSortedByPopulation() {
         ArrayList<City> ukCities = new ArrayList<>();
         try {
@@ -250,6 +283,11 @@ public class App {
         }
         return ukCities;
     }
+
+    /**
+     * Report for generating Uk cities greatest to lowest
+     */
+
     public void generateUKCitiesReport() {
         ArrayList<City> ukCities = getUKCitiesSortedByPopulation();
         if (ukCities == null || ukCities.isEmpty()) {
@@ -262,6 +300,11 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+
+
+    /**
+     * Method for getting the population of cities in the kyoto district
+     */
     public ArrayList<City> getKyotoDistrictCitiesSortedByPopulation() {
         ArrayList<City> kyotoCities = new ArrayList<>();
         try {
@@ -285,6 +328,11 @@ public class App {
         }
         return kyotoCities;
     }
+
+
+    /**
+     * Report for kyoto district
+     */
     public void generateKyotoDistrictCitiesReport() {
         ArrayList<City> kyotoCities = getKyotoDistrictCitiesSortedByPopulation();
         if (kyotoCities == null || kyotoCities.isEmpty()) {
@@ -297,6 +345,11 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+
+
+    /**
+     * Method for getting the capital cities by region
+     */
     public ArrayList<City> getCapitalCitiesByRegion(String region) {
         ArrayList<City> capitalCities = new ArrayList<>();
         try {
@@ -321,6 +374,10 @@ public class App {
         }
         return capitalCities;
     }
+
+    /**
+     * Report for capital cities in a region, ours being British Islands
+     */
     public void generateCapitalCitiesReportByRegion(String region) {
         ArrayList<City> capitalCities = getCapitalCitiesByRegion(region);
         if (capitalCities == null || capitalCities.isEmpty()) {
@@ -333,6 +390,10 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+
+    /**
+     * Capital cities by continent being Europe in test case
+     */
 
     public ArrayList<City> getCapitalCitiesByContinent(String continent) {
         ArrayList<City> capitalCities = new ArrayList<>();
@@ -358,6 +419,10 @@ public class App {
         }
         return capitalCities;
     }
+
+    /**
+     * Report for capital cities highest to lowest on a continent
+     */
     public void generateCapitalCitiesReportByContinent(String continent) {
         ArrayList<City> capitalCities = getCapitalCitiesByContinent(continent);
         if (capitalCities == null || capitalCities.isEmpty()) {
@@ -370,6 +435,10 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+
+    /**
+     * Java code used for making the all the capital cities in the world sorted by population
+     */
     public ArrayList<City> getAllCapitalCitiesSortedByPopulation() {
         ArrayList<City> capitalCities = new ArrayList<>();
         try {
@@ -393,6 +462,10 @@ public class App {
         }
         return capitalCities;
     }
+
+    /**
+     * Report for generating all capital cities in the world
+     */
     public void generateAllCapitalCitiesReport() {
         ArrayList<City> capitalCities = getAllCapitalCitiesSortedByPopulation();
         if (capitalCities == null || capitalCities.isEmpty()) {
@@ -405,15 +478,6 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 
