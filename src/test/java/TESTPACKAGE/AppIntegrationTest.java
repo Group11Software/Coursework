@@ -92,6 +92,87 @@ public class AppIntegrationTest {
             assertTrue(populations.get(i - 1) >= populations.get(i), "Cities are not sorted correctly by population");
         }
     }
+    @Test
+    void testUKCitiesReport() {
+        app.generateUKCitiesReport();
+        ArrayList<City> ukCities = app.getUKCitiesSortedByPopulation();
+
+        assertNotNull(ukCities, "UK city list should not be null");
+        assertFalse(ukCities.isEmpty(), "UK city list should not be empty");
+
+        for (int i = 1; i < ukCities.size(); i++) {
+            assertTrue(ukCities.get(i - 1).getPopulation() >= ukCities.get(i).getPopulation(),
+                    "Cities are not sorted correctly by population");
+        }
+    }
+    @Test
+    void testKyotoDistrictCitiesReport() {
+        app.generateKyotoDistrictCitiesReport();
+        ArrayList<City> kyotoCities = app.getKyotoDistrictCitiesSortedByPopulation();
+
+        assertNotNull(kyotoCities, "Kyoto city list should not be null");
+        assertFalse(kyotoCities.isEmpty(), "Kyoto city list should not be empty");
+
+        for (int i = 1; i < kyotoCities.size(); i++) {
+            assertTrue(kyotoCities.get(i - 1).getPopulation() >= kyotoCities.get(i).getPopulation(),
+                    "Cities are not sorted correctly by population");
+        }
+    }
+    @Test
+    void testCapitalCitiesReportByRegion() {
+        ArrayList<City> capitalCities = app.getCapitalCitiesByRegion("British Islands");
+
+        assertNotNull(capitalCities, "Capital cities list should not be null");
+        assertFalse(capitalCities.isEmpty(), "Capital cities list should not be empty");
+
+        System.out.println("Capital Cities in Region 'British Islands':");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+
+        // Verify sorting by population in descending order
+        for (int i = 1; i < capitalCities.size(); i++) {
+            assertTrue(capitalCities.get(i - 1).getPopulation() >= capitalCities.get(i).getPopulation(),
+                    "Capital cities are not sorted correctly by population");
+        }
+    }
+    @Test
+    void testCapitalCitiesReportByContinent() {
+        ArrayList<City> capitalCities = app.getCapitalCitiesByContinent("Europe");
+
+        assertNotNull(capitalCities, "Capital cities list should not be null");
+        assertFalse(capitalCities.isEmpty(), "Capital cities list should not be empty");
+
+        System.out.println("Capital Cities in Continent 'Europe':");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+
+        // Verify sorting by population in descending order
+        for (int i = 1; i < capitalCities.size(); i++) {
+            assertTrue(capitalCities.get(i - 1).getPopulation() >= capitalCities.get(i).getPopulation(),
+                    "Capital cities are not sorted correctly by population");
+        }
+    }
+    @Test
+    void testAllCapitalCitiesSortedByPopulation() {
+        ArrayList<City> capitalCities = app.getAllCapitalCitiesSortedByPopulation();
+
+        assertNotNull(capitalCities, "Capital cities list should not be null");
+        assertFalse(capitalCities.isEmpty(), "Capital cities list should not be empty");
+
+        System.out.println("All Capital Cities Sorted by Population:");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+
+        // Verify sorting by population in descending order
+        for (int i = 1; i < capitalCities.size(); i++) {
+            assertTrue(capitalCities.get(i - 1).getPopulation() >= capitalCities.get(i).getPopulation(),
+                    "Capital cities are not sorted correctly by population");
+        }
+    }
+
 }
 
 

@@ -1,12 +1,7 @@
 package TESTPACKAGE;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-
 
 public class App {
 
@@ -27,6 +22,8 @@ public class App {
         }
         a.printCityReport(a.getCities());
         a.report2();
+        a.generateNorthAmericaCitiesReport();
+        a.generateCapitalCitiesReportByRegion("British Islands");
 
         // Disconnect from database
         a.disconnect();
@@ -103,11 +100,6 @@ public class App {
                 Integer population = rset.getInt("population");
                 sb.append(name + "\t" + population + "\r\n");
             }
-            new File("./output/").mkdir();
-            BufferedWriter writer = new BufferedWriter(
-                    new FileWriter(new File("./output/report1.txt")));
-            writer.write(sb.toString());
-            writer.close();
             System.out.println(sb.toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -115,7 +107,6 @@ public class App {
             return;
         }
     }
-
 
     public void connect(String conString, int delay) {
         try {
@@ -226,25 +217,202 @@ public class App {
                 cities.add(city);
             }
 
-            StringBuilder report = new StringBuilder();
-            report.append("Cities in North America sorted by population:\n");
+            System.out.println("Cities in North America sorted by population:");
             for (City city : cities) {
-                report.append(city.getName())
-                        .append(" (")
-                        .append(city.getCountryCode())
-                        .append("): ")
-                        .append(city.getPopulation())
-                        .append("\n");
+                System.out.println(city.getName() + " (" + city.getCountryCode() + "): " + city.getPopulation());
             }
-            new File("./output/").mkdir();
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/NorthAmericaCitiesReport.txt"));
-            writer.write(report.toString());
-            writer.close();
-            System.out.println(report.toString());
         } catch (Exception e) {
             System.out.println("Error generating North America cities report: " + e.getMessage());
         }
     }
+    public ArrayList<City> getUKCitiesSortedByPopulation() {
+        ArrayList<City> ukCities = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.* " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Name = 'United Kingdom' " +
+                    "ORDER BY city.Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                ukCities.add(city);
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching UK cities: " + e.getMessage());
+        }
+        return ukCities;
+    }
+    public void generateUKCitiesReport() {
+        ArrayList<City> ukCities = getUKCitiesSortedByPopulation();
+        if (ukCities == null || ukCities.isEmpty()) {
+            System.out.println("No cities found for the United Kingdom.");
+            return;
+        }
+
+        System.out.println("United Kingdom Cities Sorted by Population (Greatest to Lowest):");
+        for (City city : ukCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+    public ArrayList<City> getKyotoDistrictCitiesSortedByPopulation() {
+        ArrayList<City> kyotoCities = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM city " +
+                    "WHERE District = 'Kyoto' " +
+                    "ORDER BY Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                kyotoCities.add(city);
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching cities in Kyoto district: " + e.getMessage());
+        }
+        return kyotoCities;
+    }
+    public void generateKyotoDistrictCitiesReport() {
+        ArrayList<City> kyotoCities = getKyotoDistrictCitiesSortedByPopulation();
+        if (kyotoCities == null || kyotoCities.isEmpty()) {
+            System.out.println("No cities found in Kyoto district.");
+            return;
+        }
+
+        System.out.println("Cities in Kyoto District Sorted by Population (Greatest to Lowest):");
+        for (City city : kyotoCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+    public ArrayList<City> getCapitalCitiesByRegion(String region) {
+        ArrayList<City> capitalCities = new ArrayList<>();
+        try {
+            // SQL query to fetch capital cities in the specified region
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.ID, city.Name, city.Population " +
+                    "FROM country " +
+                    "JOIN city ON country.Capital = city.ID " +
+                    "WHERE country.Region = '" + region + "' " +
+                    "ORDER BY city.Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                int id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                int population = rset.getInt("Population");
+                City city = new City(id, name, null, null, population); // CountryCode and District are irrelevant here
+                capitalCities.add(city);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching capital cities by region: " + e.getMessage());
+        }
+        return capitalCities;
+    }
+    public void generateCapitalCitiesReportByRegion(String region) {
+        ArrayList<City> capitalCities = getCapitalCitiesByRegion(region);
+        if (capitalCities == null || capitalCities.isEmpty()) {
+            System.out.println("No capital cities found for region: " + region);
+            return;
+        }
+
+        System.out.println("Capital Cities in Region '" + region + "' Sorted by Population (Greatest to Lowest):");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+
+    public ArrayList<City> getCapitalCitiesByContinent(String continent) {
+        ArrayList<City> capitalCities = new ArrayList<>();
+        try {
+            // SQL query to fetch capital cities in the specified continent
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.ID, city.Name, city.Population " +
+                    "FROM country " +
+                    "JOIN city ON country.Capital = city.ID " +
+                    "WHERE country.Continent = '" + continent + "' " +
+                    "ORDER BY city.Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                int id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                int population = rset.getInt("Population");
+                City city = new City(id, name, null, null, population); // CountryCode and District not needed here
+                capitalCities.add(city);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching capital cities by continent: " + e.getMessage());
+        }
+        return capitalCities;
+    }
+    public void generateCapitalCitiesReportByContinent(String continent) {
+        ArrayList<City> capitalCities = getCapitalCitiesByContinent(continent);
+        if (capitalCities == null || capitalCities.isEmpty()) {
+            System.out.println("No capital cities found for continent: " + continent);
+            return;
+        }
+
+        System.out.println("Capital Cities in Continent '" + continent + "' Sorted by Population (Greatest to Lowest):");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+    public ArrayList<City> getAllCapitalCitiesSortedByPopulation() {
+        ArrayList<City> capitalCities = new ArrayList<>();
+        try {
+            // SQL query to fetch all capital cities sorted by population
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.ID, city.Name, city.Population " +
+                    "FROM country " +
+                    "JOIN city ON country.Capital = city.ID " +
+                    "ORDER BY city.Population DESC";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                int id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                int population = rset.getInt("Population");
+                City city = new City(id, name, null, null, population); // CountryCode and District not needed here
+                capitalCities.add(city);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching all capital cities: " + e.getMessage());
+        }
+        return capitalCities;
+    }
+    public void generateAllCapitalCitiesReport() {
+        ArrayList<City> capitalCities = getAllCapitalCitiesSortedByPopulation();
+        if (capitalCities == null || capitalCities.isEmpty()) {
+            System.out.println("No capital cities found.");
+            return;
+        }
+
+        System.out.println("All Capital Cities Sorted by Population (Greatest to Lowest):");
+        for (City city : capitalCities) {
+            System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
