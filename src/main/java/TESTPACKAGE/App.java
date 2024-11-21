@@ -165,24 +165,62 @@ public class App {
     /**
      * prints the city of all cities greatests to lowest
      */
-
     public void printCityReport(ArrayList<City> cities) {
-        if (cities == null) {
-            System.out.println("No cities found");
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No cities found.");
             return;
         }
 
+        // Sort cities in descending order of population
         cities.sort((city1, city2) -> Long.compare(city2.getPopulation(), city1.getPopulation()));
 
+        // Print table header
+        System.out.printf("%-20s %-20s %-20s %-15s%n", "Name", "Country Code", "District", "Population");
+        System.out.println("-------------------------------------------------------------------------------");
 
+        // Print city details in a formatted table
         for (City city : cities) {
-            System.out.println(city.getName() + ": " + city.getPopulation());
+            System.out.printf("%-20s %-20s %-20s %,15d%n",
+                    city.getName(), city.getCountryCode(), city.getDistrict(), city.getPopulation());
         }
     }
+
 
     /**
      * All cities by continent generated
      */
+
+    public Country getCountryByCode(String countryCode) {
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM country WHERE Code = '" + countryCode + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+            if (rset.next()) {
+                Country country = new Country();
+                country.setCode(rset.getString("Code"));
+                country.setName(rset.getString("Name"));
+                country.setContinent(rset.getString("Continent"));
+                country.setRegion(rset.getString("Region"));
+                country.setSurfaceArea(rset.getDouble("SurfaceArea"));
+                country.setIndepYear(rset.getLong("IndepYear"));
+                country.setPopulation(rset.getLong("Population"));
+                country.setLifeExpectancy(rset.getDouble("LifeExpectancy"));
+                country.setGnp(rset.getDouble("GNP"));
+                country.setGnpOld(rset.getDouble("GNPOld"));
+                country.setLocalName(rset.getString("LocalName"));
+                country.setGovernmentForm(rset.getString("GovernmentForm"));
+                country.setHeadOfState(rset.getString("HeadOfState"));
+                country.setCapital(rset.getLong("Capital"));
+                country.setCode2(rset.getString("Code2"));
+                return country;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
+        }
+        return null;
+    }
+
     public ArrayList<City> getCitiesByContinent(String continent) {
         ArrayList<City> cities = new ArrayList<>();
         try {
@@ -201,6 +239,10 @@ public class App {
                 City city = new City(id, name, countryCode, district, population);
                 cities.add(city);
             }
+
+            // Sort cities by population in descending order
+            cities.sort((city1, city2) -> Long.compare(city2.getPopulation(), city1.getPopulation()));
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get details");
@@ -208,6 +250,7 @@ public class App {
         }
         return cities;
     }
+
 
     /**
      * Getting all Asian cities population report from highest to lowest
@@ -353,9 +396,8 @@ public class App {
     public ArrayList<City> getCapitalCitiesByRegion(String region) {
         ArrayList<City> capitalCities = new ArrayList<>();
         try {
-            // SQL query to fetch capital cities in the specified region
             Statement stmt = con.createStatement();
-            String sql = "SELECT city.ID, city.Name, city.Population " +
+            String sql = "SELECT city.ID, city.Name, city.Population, country.Code as CountryCode, country.Name as CountryName " +
                     "FROM country " +
                     "JOIN city ON country.Capital = city.ID " +
                     "WHERE country.Region = '" + region + "' " +
@@ -363,10 +405,12 @@ public class App {
             ResultSet rset = stmt.executeQuery(sql);
 
             while (rset.next()) {
-                int id = rset.getInt("ID");
-                String name = rset.getString("Name");
-                int population = rset.getInt("Population");
-                City city = new City(id, name, null, null, population); // CountryCode and District are irrelevant here
+                long id = rset.getLong("ID");
+                String cityName = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String countryName = rset.getString("CountryName");  // Fetch the country name
+                long population = rset.getLong("Population");
+                City city = new City(id, cityName, countryCode, countryName,  population); // Added country name to constructor
                 capitalCities.add(city);
             }
         } catch (SQLException e) {
@@ -374,6 +418,7 @@ public class App {
         }
         return capitalCities;
     }
+
 
     /**
      * Report for capital cities in a region, ours being British Islands
@@ -394,24 +439,27 @@ public class App {
     /**
      * Capital cities by continent being Europe in test case
      */
-
     public ArrayList<City> getCapitalCitiesByContinent(String continent) {
         ArrayList<City> capitalCities = new ArrayList<>();
         try {
-            // SQL query to fetch capital cities in the specified continent
+            // SQL query to fetch capital cities by continent, sorted by population
             Statement stmt = con.createStatement();
-            String sql = "SELECT city.ID, city.Name, city.Population " +
+            String sql = "SELECT city.ID, city.Name, city.Population, country.Code " +
                     "FROM country " +
                     "JOIN city ON country.Capital = city.ID " +
-                    "WHERE country.Continent = '" + continent + "' " +
+                    "WHERE country.Continent = ? " +
                     "ORDER BY city.Population DESC";
-            ResultSet rset = stmt.executeQuery(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, continent);  // Set continent parameter
+
+            ResultSet rset = ps.executeQuery();
 
             while (rset.next()) {
                 int id = rset.getInt("ID");
                 String name = rset.getString("Name");
                 int population = rset.getInt("Population");
-                City city = new City(id, name, null, null, population); // CountryCode and District not needed here
+                String countryCode = rset.getString("Code");
+                City city = new City(id, name, countryCode, null, population); // Set the CountryCode
                 capitalCities.add(city);
             }
         } catch (SQLException e) {
@@ -442,9 +490,9 @@ public class App {
     public ArrayList<City> getAllCapitalCitiesSortedByPopulation() {
         ArrayList<City> capitalCities = new ArrayList<>();
         try {
-            // SQL query to fetch all capital cities sorted by population
+            // SQL query to fetch all capital cities sorted by population, including countryCode
             Statement stmt = con.createStatement();
-            String sql = "SELECT city.ID, city.Name, city.Population " +
+            String sql = "SELECT city.ID, city.Name, city.Population, country.Code " +
                     "FROM country " +
                     "JOIN city ON country.Capital = city.ID " +
                     "ORDER BY city.Population DESC";
@@ -454,7 +502,8 @@ public class App {
                 int id = rset.getInt("ID");
                 String name = rset.getString("Name");
                 int population = rset.getInt("Population");
-                City city = new City(id, name, null, null, population); // CountryCode and District not needed here
+                String countryCode = rset.getString("Code");  // Retrieve the country code
+                City city = new City(id, name, countryCode, null, population); // Set countryCode
                 capitalCities.add(city);
             }
         } catch (SQLException e) {
@@ -462,6 +511,7 @@ public class App {
         }
         return capitalCities;
     }
+
 
     /**
      * Report for generating all capital cities in the world
