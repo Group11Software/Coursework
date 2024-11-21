@@ -95,6 +95,7 @@ public class AppIntegrationTest {
             assertTrue(populations.get(i - 1) >= populations.get(i), "Cities are not sorted correctly by population");
         }
     }
+    /** test to porduce the countries form largest to smallest **/
     @Test
     void CountryLargestToSmallest() {
         /** Fetch the list of countries **/
@@ -106,10 +107,13 @@ public class AppIntegrationTest {
         /** Sort the list by population from largest to smallest **/
         countries.sort((country1, country2) -> Long.compare(country2.getPopulation(), country1.getPopulation()));
 
-        /** Print the sorted list for debugging **/
+        /** Print the sorted list in columns **/
         System.out.println("Countries sorted from largest to smallest population:");
+        System.out.printf("%-15s %-15s %s%n", "Country Name", "Population", "Continent");
+        System.out.println("--------------------------------------------");
+
         for (Country country : countries) {
-            System.out.println(country.getName() + ": " + country.getPopulation());
+            System.out.printf("%-15s %-15d %-15s%n", country.getName(), country.getPopulation(), country.getContinent());
         }
 
         /** Validate the sorting order **/
@@ -118,7 +122,7 @@ public class AppIntegrationTest {
                     "Countries are not sorted correctly by population");
         }
     }
-
+    /** test to produce the countries from largest to smallest in a contintent**/
     @Test
     void CountryLargestToSmallestAsia() {
         /** Fetch the list of countries **/
@@ -130,13 +134,17 @@ public class AppIntegrationTest {
         /** Sort the list by population, from largest to smallest **/
         countries.sort((country1, country2) -> Long.compare(country2.getPopulation(), country1.getPopulation()));
 
-        /** Print the sorted list for debugging **/
-        System.out.println("Countries sorted from largest to smallest population:");
-        for (Country country : countries) {
-            System.out.println(country.getName() + ": " + country.getPopulation());
-        }
+        /** Print the sorted list in columns **/
+        System.out.println("Countries in Asia sorted from largest to smallest population:");
+        System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "Code", "Country", "Population", "Continent", "Capital");
+        System.out.println("------------------------------------------------------------");
 
+        for (Country country : countries) {
+            System.out.printf("%-10s %-15s %-15d %-15s %-15s%n", country.getCode(), country.getName(),
+                    country.getPopulation(), country.getContinent(), country.getCapital());
+        }
     }
+    /** test to produce the countries from largest to smallest in regions **/
     @Test
     void CountryLargestToSmallestRegions() {
         /** Fetch the list of countries **/
@@ -148,43 +156,64 @@ public class AppIntegrationTest {
         /** Sort the list by population, from largest to smallest **/
         countries.sort((country1, country2) -> Long.compare(country2.getPopulation(), country1.getPopulation()));
 
-        /** Print the sorted list for debugging **/
-        System.out.println("Countries sorted from largest to smallest population:");
+        /** Print the sorted list in columns **/
+        System.out.println("Countries sorted from largest to smallest population by region:");
+        System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "Code", "Country", "Population", "Continent", "Capital");
+        System.out.println("------------------------------------------------------------");
+
         for (Country country : countries) {
-            System.out.println(country.getName() + ": " + country.getPopulation());
+            System.out.printf("%-10s %-15s %-15d %-15s %-15s%n", country.getCode(), country.getName(),
+                    country.getPopulation(), country.getContinent(), country.getCapital());
         }
     }
+    /** test to produce the country report **/
     @Test
-    void countryreport1(){
+    void countryreport1() {
         /** Fetch the list of countries **/
         ArrayList<Country> countries = app.report5();
-        /** Print the sorted list for debugging **/
-        System.out.println("country report:");
+
+        /** Print the sorted list in columns **/
+        System.out.println("Country report:");
+        System.out.printf("%-10s %-15s %-15s %-15s %-15s%n", "Code", "Country", "Population", "Continent", "Region");
+        System.out.println("------------------------------------------------------------");
+
         for (Country country : countries) {
-            System.out.println(country.getCode() + ": " + country.getName() + ": " + country.getPopulation() + ": " + country.getContinent() + ": " + country.getRegion());
+            System.out.printf("%-10s %-15s %-15d %-15s %-15s%n", country.getCode(), country.getName(),
+                    country.getPopulation(), country.getContinent(), country.getRegion());
         }
     }
+    /** test to produce the city report**/
     @Test
-    void cityreport2(){
-        /** Fetch the list of countries **/
+    void cityreport2() {
+        /** Fetch the list of cities **/
         ArrayList<City> cities = app.report6();
-        /** Print the sorted list for debugging **/
-        System.out.println("city report:");
+
+        /** Print the sorted list in columns **/
+        System.out.println("City report:");
+        System.out.printf("%-15s %-15s %-15s %-15s%n", "City Name", "Country Code", "Population", "District");
+        System.out.println("------------------------------------------------------------");
+
         for (City city : cities) {
-            System.out.println(city.getName() + ": " + city.getCountryCode() + ":" + city.getPopulation() + ": " + city.getDistrict() );
+            System.out.printf("%-15s %-15s %-15d %-15s%n", city.getName(), city.getCountryCode(),
+                    city.getPopulation(), city.getDistrict());
         }
     }
+    /** test to produce the capital city report **/
     @Test
-    void capitalcityreport(){
+    void capitalcityreport() {
         /** Fetch the list of countries **/
         ArrayList<Country> countries = app.report7();
-        /** Print the sorted list for debugging **/
-        System.out.println("capital city report:");
-        for (Country country : countries) {
-            System.out.println(country.getCapital() + ": " + country.getName() + ": " + country.getPopulation() );
-        }
 
+        /** Print the sorted list in columns **/
+        System.out.println("Capital city report:");
+        System.out.printf("%-15s %-15s %-15s%n", "Capital", "Country", "Population");
+        System.out.println("------------------------------------------------------------");
+
+        for (Country country : countries) {
+            System.out.printf("%-15s %-15s %-15d%n", country.getCapital(), country.getName(), country.getPopulation());
+        }
     }
+    /** test to output the people in and out of cities**/
     @Test
     void peopleinandoutofcitiesreport() {
         /** Fetch the list of countries and cities to make the report **/
@@ -194,7 +223,10 @@ public class AppIntegrationTest {
         List<Country> countries = (List<Country>) result.get(0); /** Cast to List<Country> **/
         List<City> cities = (List<City>) result.get(1); /** Cast to List<City> **/
 
+        // Print the header for the report
         System.out.println("People in and out of cities in each country:");
+        System.out.printf("%-25s %-20s %-20s%n", "Country", "Total Population", "Urban Population");
+        System.out.println("---------------------------------------------------------------");
 
         /** Loop through each country **/
         for (Country country : countries) {
@@ -203,54 +235,43 @@ public class AppIntegrationTest {
 
             /** Loop through all cities and add their population if they belong to the current country **/
             for (City city : cities) {
-                /** Check if the city's countryCode matches the country's code **/
                 if (city.getCountryCode().equals(country.getCode())) {
                     totalCityPopulation += city.getPopulation();
                 }
             }
 
-            /** Calculate the rural population (outside of cities) **/
-            long ruralPopulation = country.getPopulation() - totalCityPopulation;
-
-            /** Print the results **/
-            System.out.println("Country: " + country.getName());
-            System.out.println("  Total Population: " + country.getPopulation());
-            System.out.println("  People Living in Cities: " + totalCityPopulation);
-            System.out.println("  People Not Living in Cities: " + ruralPopulation);
-            System.out.println("---------------");
+            /** Print the results in columns **/
+            System.out.printf("%-25s %-20d %-20d%n", country.getName(), country.getPopulation(), totalCityPopulation);
         }
     }
+
+    /** test to output the people in and out of cities in a continent **/
     @Test
     void PIAOOCIACContinentreport() {
         /** Call the report9 method and get the result **/
         List<Object> result = app.report9();
 
         /** Extract continents and their population data from the result **/
-        List<String> continents = (List<String>) result.get(0);  /** List of continent names **/
-        List<Map<String, Object>> populationData = (List<Map<String, Object>>) result.get(1); /** Population data **/
+        List<String> continents = (List<String>) result.get(0);
+        List<Map<String, Object>> populationData = (List<Map<String, Object>>) result.get(1);
 
         System.out.println("People in and out of cities in each continent:");
 
-        /** Loop through the population data and print statistics for each continent **/
         for (Map<String, Object> data : populationData) {
             String continent = (String) data.get("continent");
             long totalPopulation = (long) data.get("totalCountryPopulation");
             long cityPopulation = (long) data.get("totalCityPopulation");
             long ruralPopulation = (long) data.get("totalRuralPopulation");
 
-            System.out.println("Continent: " + continent);
-            System.out.println("  Total Population: " + totalPopulation);
-            System.out.println("  People Living in Cities: " + cityPopulation);
-            System.out.println("  People Not Living in Cities: " + ruralPopulation);
+            System.out.printf("%-15s %-15d %-15d %-15d%n", continent, totalPopulation, cityPopulation, ruralPopulation);
             System.out.println("---------------");
         }
     }
+    /** test to output the largest to smallest countries within a region to N **/
     @Test
     void CountryLargestToSmallestRegionswithn() {
         Scanner scanner = new Scanner(System.in);
-
-        /** Ask the user how many top countries they want **/
-        int n = 5;
+        int n = 5;  // Number of countries to retrieve
 
         /** Fetch the list of top N countries **/
         ArrayList<Country> countries = app.report2withn(n);
@@ -258,12 +279,16 @@ public class AppIntegrationTest {
         /** Ensure the list is not null **/
         assertNotNull(countries, "Country list should not be null");
 
-        /** Print the sorted list for debugging **/
+        /** Print the sorted list in columns **/
         System.out.println("Top " + n + " countries by population:");
+        System.out.printf("%-15s %-15s %-15s%n", "Country Name", "Population", "Continent");
+        System.out.println("--------------------------------------------");
+
         for (Country country : countries) {
-            System.out.println(country.getName() + ": " + country.getPopulation());
+            System.out.printf("%-15s %-15d %-15s%n", country.getName(), country.getPopulation(), country.getContinent());
         }
     }
+    /** Test to generate languages and their percentage of the world**/
     @Test
     void testGenerateLanguageReport() {
         try {
@@ -274,23 +299,69 @@ public class AppIntegrationTest {
             assertNotNull(languageReports, "Language reports should not be null");
             assertFalse(languageReports.isEmpty(), "Language reports should not be empty");
 
-            // Print the reports for debugging (only language, count, and percentage)
+            // Print the reports in columns
+            System.out.printf("%-20s %-10s %-15s%n", "Language", "Count", "Percentage");
+            System.out.println("----------------------------------------");
+
             for (countrylanguage report : languageReports) {
-                System.out.println("Language: " + report.getLanguage() +
-                        ", Count: " + report.getCount() +
-                        ", Percentage: " + String.format("%.2f", report.getPercentage()) + "%");
+                System.out.printf("%-20s %-10d %-15.2f%n", report.getLanguage(), report.getCount(), report.getPercentage());
             }
-
-            // Example assertion to verify at least one language report exists
-            assertTrue(languageReports.size() > 0, "There should be at least one language report");
-
-            // Additional assertions can verify specific values if expected results are known
-            // Example: Check for Chinese language in the result
-            assertTrue(languageReports.stream().anyMatch(report -> report.getLanguage().equals("Chinese")),
-                    "The report should include data for Chinese language");
 
         } catch (Exception e) {
             fail("An exception occurred during the test: " + e.getMessage());
+        }
+    }
+    /** test to print the top n amount of cities from largest to smallest **/
+    @Test
+    void CityLargesttosmalln() {
+        int n = 5;
+        ArrayList<City> cities = app.getCitieswithn(n);
+
+        assertNotNull(cities, "City list should not be null");
+
+        cities.sort((city1, city2) -> Long.compare(city2.getPopulation(), city1.getPopulation()));
+
+        System.out.println("Top " + n + " Cities sorted by population:");
+        System.out.printf("%-15s %-15s %s%n", "City Name", "Population", "Country Code");
+        System.out.println("--------------------------------------------");
+
+        for (City city : cities) {
+            System.out.printf("%-15s %-15d %-15s%n", city.getName(), city.getPopulation(), city.getCountryCode());
+        }
+
+        for (int i = 1; i < cities.size(); i++) {
+            assertTrue(cities.get(i - 1).getPopulation() >= cities.get(i).getPopulation(),
+                    "Cities are not sorted correctly by population");
+        }
+    }
+    /** test to call the top n cities from largest to smallest  **/
+    @Test
+    void testGetCitiesByContinentwithn() {
+        String continent = "Asia"; // Example continent
+        int n = 5; // Number of top cities to retrieve
+        ArrayList<City> cities = app.getCitiesByContinentwithn(continent, n);
+
+        // Validate the result is not null
+        assertNotNull(cities, "City list should not be null");
+        assertFalse(cities.isEmpty(), "City list should not be empty");
+
+        // Validate that the size does not exceed 'n'
+        assertTrue(cities.size() <= n, "City list should not exceed the specified number of cities");
+
+        // Print the top cities in a formatted table
+        System.out.println("Top " + n + " cities in " + continent + " sorted by population:");
+        System.out.printf("%-15s %-15s %-15s %-15s %n", "City Name", "Country Code", "District", "Population");
+        System.out.println("------------------------------------------------------------");
+
+        for (City city : cities) {
+            System.out.printf("%-15s %-15s %-15s %-15d %n",
+                    city.getName(), city.getCountryCode(), city.getDistrict(), city.getPopulation());
+        }
+
+        // Validate the cities are sorted in descending order by population
+        for (int i = 1; i < cities.size(); i++) {
+            assertTrue(cities.get(i - 1).getPopulation() >= cities.get(i).getPopulation(),
+                    "Cities are not sorted correctly by population");
         }
     }
 

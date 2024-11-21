@@ -267,28 +267,36 @@ public class App {
             System.out.println("Error generating North America cities report: " + e.getMessage());
         }
     }
-
+    /**methdo to produce the countries from largest to smallest in a continent **/
     public ArrayList<Country> report3() {
-        ArrayList<Country> countries = new ArrayList<>(); /**List to store countries **/
+        ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
         try {
             /** Create an SQL statement **/
             Statement stmt = con.createStatement();
 
-            /** Correct SQL query to fetch name and population of countries in Asia **/
-            String sql = "SELECT name, population FROM country WHERE continent = 'Asia'";
+            /** Correct SQL query to fetch required fields for countries in Asia **/
+            String sql = "SELECT Code, Name, Population, Continent, Region, Capital FROM country WHERE Continent = 'Asia'";
 
             /** Execute SQL statement **/
             ResultSet rset = stmt.executeQuery(sql);
 
             /** Loop through the result set **/
             while (rset.next()) {
-                String name = rset.getString("name");
-                long population = rset.getLong("population");
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                long population = rset.getLong("Population");
+                String continent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int capital = rset.getInt("Capital");
 
-                /** Create new Country object and set the name and population **/
+                /** Create new Country object and set fields **/
                 Country country = new Country();
+                country.setCode(code);
                 country.setName(name);
                 country.setPopulation(population);
+                country.setContinent(continent);
+                country.setRegion(region);
+                country.setCapital(capital);
 
                 /** Add the Country object to the list **/
                 countries.add(country);
@@ -296,13 +304,20 @@ public class App {
 
             /** Optionally write to a file for debugging or logging **/
             new File("./output/").mkdir(); /** Create output folder if not exist **/
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./output/report2.txt"))) {
-                /** loops through all the countries **/
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./output/report3.txt"))) {
+                /** Loops through all the countries **/
                 for (Country country : countries) {
-                    writer.write(country.getName() + "\t" + country.getPopulation() + "\r\n");
+                    writer.write(
+                            country.getCode() + "\t" +
+                                    country.getName() + "\t" +
+                                    country.getPopulation() + "\t" +
+                                    country.getContinent() + "\t" +
+                                    country.getRegion() + "\t" +
+                                    country.getCapital() + "\r\n"
+                    );
                 }
             }
-            /** if fail **/
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to retrieve country details");
@@ -310,27 +325,36 @@ public class App {
         return countries; /** Return the list of Country objects **/
     }
 
+    /**  method to produce the countries from largest to smallest in regions**/
     public ArrayList<Country> report4() {
         ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
         try {
             /** Create an SQL statement **/
             Statement stmt = con.createStatement();
 
-            /** Correct SQL query to fetch name and population of countries in Asia **/
-            String sql = "SELECT name, population FROM country WHERE region = 'North America'";
+            /** SQL query to fetch required fields **/
+            String sql = "SELECT Code, Name, Population, Continent, Region, Capital FROM country WHERE Region = 'North America'";
 
             /** Execute SQL statement **/
             ResultSet rset = stmt.executeQuery(sql);
 
             /** Loop through the result set **/
             while (rset.next()) {
-                String name = rset.getString("name");
-                long population = rset.getLong("population");
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                long population = rset.getLong("Population");
+                String continent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int capital = rset.getInt("Capital");
 
-                /** Create new Country object and set the name and population **/
+                /** Create new Country object and set fields **/
                 Country country = new Country();
+                country.setCode(code);
                 country.setName(name);
                 country.setPopulation(population);
+                country.setContinent(continent);
+                country.setRegion(region);
+                country.setCapital(capital);
 
                 /** Add the Country object to the list **/
                 countries.add(country);
@@ -338,13 +362,20 @@ public class App {
 
             /** Optionally write to a file for debugging or logging **/
             new File("./output/").mkdir(); /** Create output folder if not exist **/
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./output/report2.txt"))) {
-                /** loops through all countries **/
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./output/report4.txt"))) {
+                /** Loops through all countries **/
                 for (Country country : countries) {
-                    writer.write(country.getName() + "\t" + country.getPopulation() + "\r\n");
+                    writer.write(
+                            country.getCode() + "\t" +
+                                    country.getName() + "\t" +
+                                    country.getPopulation() + "\t" +
+                                    country.getContinent() + "\t" +
+                                    country.getRegion() + "\t" +
+                                    country.getCapital() + "\r\n"
+                    );
                 }
             }
-            /** if fails sends out message **/
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to retrieve country details");
@@ -352,6 +383,8 @@ public class App {
         return countries; /** Return the list of Country objects **/
     }
 
+
+    /** method to produce the country report **/
     public ArrayList<Country> report5() {
         ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
         try {
@@ -400,7 +433,7 @@ public class App {
         }
         return countries; /** Return the list of City objects **/
     }
-
+    /** method to produce  the city report**/
     public ArrayList<City> report6() {
         ArrayList<City> cities = new ArrayList<>(); /** List to store cities **/
         try {
@@ -444,7 +477,7 @@ public class App {
         }
         return cities; /** Return the list of City objects **/
     }
-
+    /** method to produce the capital city report **/
     public ArrayList<Country> report7() {
         ArrayList<Country> countries = new ArrayList<>();
         try {
@@ -500,7 +533,7 @@ public class App {
         }
         return countries; /** Return the list of Country objects **/
     }
-
+    /** method to produce the report on people in and out of cities  **/
     public List<Object> report8() {
         /** List to store Country objects **/
         ArrayList<Country> countries = new ArrayList<>();
@@ -578,7 +611,7 @@ public class App {
 
         return result;
     }
-
+    /** method to call people in and out of cities in a city  **/
     public List<Object> report9() {
         /** List to store continents with their aggregated population data **/
         ArrayList<String> continents = new ArrayList<>();
@@ -638,7 +671,7 @@ public class App {
 
         return result;
     }
-
+    /** method to produce the countries from largest to smallest to the top n **/
     public ArrayList<Country> report2withn(int n) {
         ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
         try {
@@ -678,7 +711,7 @@ public class App {
         }
         return countries; /** Return the list of Country objects **/
     }
-
+    /** method to produce the percentage of people speaking languages **/
     public ArrayList<countrylanguage> generateLanguageReport() {
         Map<String, Integer> languageCounts = new HashMap<>();
         Map<String, String> countryCodes = new HashMap<>();
@@ -738,6 +771,67 @@ public class App {
 
         return languageReports;
     }
+    /**method to give the test the top n cities from largest to smallest **/
+    public ArrayList<City> getCitieswithn(int n) {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // SQL query to fetch cities ordered by population in descending order, limiting results to n
+            String sql = "SELECT * FROM city ORDER BY Population DESC LIMIT " + n;
+            // Execute the SQL query
+            ResultSet rset = stmt.executeQuery(sql);
+
+            // Process the result set
+            while (rset.next()) {
+                int id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                int population = rset.getInt("Population");
+
+                // Add city to the list
+                cities.add(new City(id, name, countryCode, district, population));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve cities");
+        }
+
+        return cities;
+    }
+    /** method to give the test the top n cities in a continent from largest to smallest**/
+    public ArrayList<City> getCitiesByContinentwithn(String continent, int n) {
+        ArrayList<City> cities = new ArrayList<>();
+        try {
+            // Create SQL statement
+            Statement stmt = con.createStatement();
+            String sql = "SELECT city.* " +
+                    "FROM city " +
+                    "JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = '" + continent + "' " +
+                    "ORDER BY city.Population DESC " +
+                    "LIMIT " + n; // Get only the top n cities
+            ResultSet rset = stmt.executeQuery(sql);
+
+            // Process result set
+            while (rset.next()) {
+                Integer id = rset.getInt("ID");
+                String name = rset.getString("Name");
+                String countryCode = rset.getString("CountryCode");
+                String district = rset.getString("District");
+                Integer population = rset.getInt("Population");
+                City city = new City(id, name, countryCode, district, population);
+                cities.add(city);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+        return cities;
+    }
+
 
 
 
