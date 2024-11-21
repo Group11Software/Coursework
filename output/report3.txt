@@ -1,0 +1,51 @@
+AFG	Afghanistan	22720000	Asia	Southern and Central Asia	1
+ARE	United Arab Emirates	2441000	Asia	Middle East	65
+ARM	Armenia	3520000	Asia	Middle East	126
+AZE	Azerbaijan	7734000	Asia	Middle East	144
+BGD	Bangladesh	129155000	Asia	Southern and Central Asia	150
+BHR	Bahrain	617000	Asia	Middle East	149
+BRN	Brunei	328000	Asia	Southeast Asia	538
+BTN	Bhutan	2124000	Asia	Southern and Central Asia	192
+CHN	China	1277558000	Asia	Eastern Asia	1891
+CYP	Cyprus	754700	Asia	Middle East	2430
+GEO	Georgia	4968000	Asia	Middle East	905
+HKG	Hong Kong	6782000	Asia	Eastern Asia	937
+IDN	Indonesia	212107000	Asia	Southeast Asia	939
+IND	India	1013662000	Asia	Southern and Central Asia	1109
+IRN	Iran	67702000	Asia	Southern and Central Asia	1380
+IRQ	Iraq	23115000	Asia	Middle East	1365
+ISR	Israel	6217000	Asia	Middle East	1450
+JOR	Jordan	5083000	Asia	Middle East	1786
+JPN	Japan	126714000	Asia	Eastern Asia	1532
+KAZ	Kazakstan	16223000	Asia	Southern and Central Asia	1864
+KGZ	Kyrgyzstan	4699000	Asia	Southern and Central Asia	2253
+KHM	Cambodia	11168000	Asia	Southeast Asia	1800
+KOR	South Korea	46844000	Asia	Eastern Asia	2331
+KWT	Kuwait	1972000	Asia	Middle East	2429
+LAO	Laos	5433000	Asia	Southeast Asia	2432
+LBN	Lebanon	3282000	Asia	Middle East	2438
+LKA	Sri Lanka	18827000	Asia	Southern and Central Asia	3217
+MAC	Macao	473000	Asia	Eastern Asia	2454
+MDV	Maldives	286000	Asia	Southern and Central Asia	2463
+MMR	Myanmar	45611000	Asia	Southeast Asia	2710
+MNG	Mongolia	2662000	Asia	Eastern Asia	2696
+MYS	Malaysia	22244000	Asia	Southeast Asia	2464
+NPL	Nepal	23930000	Asia	Southern and Central Asia	2729
+OMN	Oman	2542000	Asia	Middle East	2821
+PAK	Pakistan	156483000	Asia	Southern and Central Asia	2831
+PHL	Philippines	75967000	Asia	Southeast Asia	766
+PRK	North Korea	24039000	Asia	Eastern Asia	2318
+PSE	Palestine	3101000	Asia	Middle East	4074
+QAT	Qatar	599000	Asia	Middle East	2973
+SAU	Saudi Arabia	21607000	Asia	Middle East	3173
+SGP	Singapore	3567000	Asia	Southeast Asia	3208
+SYR	Syria	16125000	Asia	Middle East	3250
+THA	Thailand	61399000	Asia	Southeast Asia	3320
+TJK	Tajikistan	6188000	Asia	Southern and Central Asia	3261
+TKM	Turkmenistan	4459000	Asia	Southern and Central Asia	3419
+TMP	East Timor	885000	Asia	Southeast Asia	1522
+TUR	Turkey	66591000	Asia	Middle East	3358
+TWN	Taiwan	22256000	Asia	Eastern Asia	3263
+UZB	Uzbekistan	24318000	Asia	Southern and Central Asia	3503
+VNM	Vietnam	79832000	Asia	Southeast Asia	3770
+YEM	Yemen	18112000	Asia	Middle East	1780
