@@ -1,0 +1,18 @@
+Group 11 Unit Tests
+Examples for implementation:
+
+Top N populated countries
+Input: N = 10
+Expected Output: List of the top 10 countries sorted by population in descending order. 
+
+Population of specific country
+Input: “Scotland”
+Expected Output: 5,490,000
+
+Population of Continent
+Input: “Europe”
+Expected Output: 744,858,518
+
+Cities in a country sorted by population
+Input: “Canada” 
+Expected Output: List of cities sorted by population in descending order.
