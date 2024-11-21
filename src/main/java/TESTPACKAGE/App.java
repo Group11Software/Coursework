@@ -192,6 +192,19 @@ public class App {
             System.out.println(city.getName() + ": " + city.getPopulation());
         }
     }
+    public void printCountryReport(ArrayList<Country> countries) {
+        if (countries == null) {
+            System.out.println("No countries found");
+            return;
+        }
+
+        countries.sort((country1, country2) -> Long.compare(country2.getPopulation(), country1.getPopulation()));
+
+
+        for (Country country : countries) {
+            System.out.println(country.getName() + ": " + country.getPopulation());
+        }
+    }
 
     public ArrayList<City> getCitiesByContinent(String continent) {
         ArrayList<City> cities = new ArrayList<>();
