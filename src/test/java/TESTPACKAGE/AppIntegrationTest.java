@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class AppIntegrationTest {
 
@@ -248,6 +251,210 @@ public class AppIntegrationTest {
                     "Capital cities are not sorted correctly by population");
         }
     }
+
+    /**
+     * Integration test for - Total world population
+     */
+    @Test
+    public void testPopulationOfTheWorld() {
+        app.generateWorldPopulationReport();
+        String reportFilePath = "./output/WorldPopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) !=null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue(reportContent.toString().contains("Total World Population"));
+    }
+    /**
+     * Integration test for - Total population of Europe
+     */
+
+    @Test
+    public void testPopulationOfContinentEurope() {
+        app.generateContinentPopulationReport("Europe");
+
+        String reportFilePath = "./output/EuropePopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assertTrue(reportContent.toString().contains("Total Population of Europe:"),
+                "The report does not contain the total population for Europe");
+    }
+
+    /**
+     * Integration test for - Total population of Iran
+     */
+/*
+    @Test
+    public void testPopulationOfCountry() {
+        app.generateCountryPopulationReport("Iran");
+
+        String reportFilePath = "./output/Iran_PopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            fail("Failed to read the population report file: " + e.getMessage());
+        }
+
+        assertTrue(reportContent.toString().contains("Population of Iran:"),
+                "The report does not contain the population for Iran");
+    }
+*/
+    /**
+     * Integration test for - Total population of region Baltic countries
+     */
+    @Test
+    public void testPopulationOfRegion() {
+        app.generateRegionPopulationReport("Baltic Countries");
+
+        String reportFilePath = "./output/Baltic_CountriesPopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue(reportContent.toString().contains("Total Population of Baltic Countries:"),
+                "The report does not contain the population for Baltic Countries");
+    }
+
+    /**
+     * Integration test for - Total population of distict British Colombia
+     */
+    @Test
+    public void testPopulationOfDistrict() {
+        app.generateDistrictPopulationReport("British Colombia");
+
+        String reportFilePath = "./output/British_ColombiaPopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue(reportContent.toString().contains("Total Population of British Colombia:"),
+                "The report does not contain the population for British Colombia");
+    }
+
+    /**
+     * Integration test for - Total population of a city Yerevan
+     */
+    @Test
+    public void testPopulationOfCity() {
+        // Generate the report for Yerevan
+        app.generateCityPopulationReport("Yerevan");
+
+        String reportFilePath = "./output/YerevanPopulationReport.txt";
+        StringBuilder reportContent = new StringBuilder();
+
+        // Read the content of the generated report
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assertTrue(reportContent.toString().contains("Population of Yerevan:"),
+                "The report does not contain the population for Yerevan");
+    }
+    /**
+     * Integration test for - Top N (5) city populations of Asia
+     */
+    @Test
+    public void testTopNPopulatedCountriesInContinent() {
+        String continent = "Asia";
+        int n = 5;
+
+        app.generateTopNPopulatedCountriesReport(continent, n);
+
+        String reportFilePath = String.format("./output/Top%dPopulatedCountries_%s.txt", n, continent);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        assertTrue(reportContent.toString().contains("Top 5 Most Populated Countries in Asia"),
+                "The report does not contain the expected title.");
+        assertTrue(reportContent.toString().split("\n").length > n,
+                "The report does not list the expected number of countries.");
+    }
+
+    /**
+     * Integration test for - Top N(3) countries in the region Caribbean
+     */
+    @Test
+    public void testTopNPopulatedCountriesInRegion() {
+        String region = "Caribbean";
+        int n = 3;
+
+        // Generate the report
+        app.generateTopNPopulatedCountriesInRegion(region, n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dPopulatedCountries_%s.txt", n, region);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        assertTrue(reportContent.toString().contains("Top 3 Most Populated Countries in Caribbean"),
+                "The report does not contain the expected title.");
+        assertTrue(reportContent.toString().contains("Total Population of Region:"),
+                "The report does not contain the total population of the region.");
+        assertTrue(reportContent.toString().contains("Total Population in Cities:"),
+                "The report does not contain the total city population data.");
+        assertTrue(reportContent.toString().contains("Total Population in Rural Areas:"),
+                "The report does not contain the rural population data.");
+        assertTrue(reportContent.toString().split("\n").length > n + 4,  // +4 for the headers and summary
+                "The report does not list the expected number of countries and population data.");
+    }
+
 
 }
 

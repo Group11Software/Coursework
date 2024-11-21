@@ -1,8 +1,11 @@
 package TESTPACKAGE;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-
 public class App {
 
     /**
@@ -526,6 +529,350 @@ public class App {
         System.out.println("All Capital Cities Sorted by Population (Greatest to Lowest):");
         for (City city : capitalCities) {
             System.out.println(city.getName() + ": " + city.getPopulation());
+        }
+    }
+
+    public void generateWorldPopulationReport() {
+        long totalPopulation = 0;  // Initialize total population as 0
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT population FROM country";  // Query to get the population of all countries
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                totalPopulation += rset.getLong("population");  // Add the population of each country
+            }
+
+            // Create the report
+            StringBuilder report = new StringBuilder();
+            report.append("Total World Population: ").append(totalPopulation).append("\n");
+
+            // Create the output folder if it doesn't exist
+            new File("./output/").mkdir();
+
+            // Write the report to a file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/WorldPopulationReport.txt"));
+            writer.write(report.toString());
+            writer.close();
+
+            // Print the report content
+            System.out.println(report.toString());
+        } catch (Exception e) {
+            System.out.println("Error generating World population report: " + e.getMessage());
+        }
+    }
+    public void generateContinentPopulationReport(String continent) {
+        long totalPopulation = 0;  // Initialize total population as 0
+
+        try {
+            Statement stmt = con.createStatement();
+
+            // Update the SQL query to select countries from the specific continent
+            String sql = "SELECT population FROM country WHERE continent = '" + continent + "'";  // Filter by continent
+            ResultSet rset = stmt.executeQuery(sql);
+
+            // Sum up the population of countries in the specified continent
+            while (rset.next()) {
+                totalPopulation += rset.getLong("population");  // Add the population of each country
+            }
+
+            // Create the report content
+            StringBuilder report = new StringBuilder();
+            report.append("Total Population of ").append(continent).append(": ").append(totalPopulation).append("\n");
+
+            // Ensure the output folder exists
+            new File("./output/").mkdir();
+
+            // Write the report to a file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/" + continent + "PopulationReport.txt"));
+            writer.write(report.toString());
+            writer.close();
+
+            // Print the report content
+            System.out.println(report.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error generating " + continent + " population report: " + e.getMessage());
+        }
+    }
+
+    public void generateCountryPopulationReport(String countryName) {
+        long population = 0;
+
+        try {
+            Statement stmt = con.createStatement();
+
+            // SQL query to fetch the population of a specific country
+            String sql = "SELECT population FROM country WHERE name = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, countryName);
+            ResultSet rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                population = rset.getLong("population");
+            } else {
+                System.out.println("Country " + countryName + " not found.");
+                return;
+            }
+
+            String report = "Population of " + countryName + ": " + population + "\n";
+
+            // Ensure the output folder exists
+            File outputDir = new File("./output/");
+            if (!outputDir.exists()) {
+                outputDir.mkdir();
+            }
+
+            // Write the report to a file
+            String reportFileName = "./output/" + countryName.replace(" ", "_") + "PopulationReport.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(reportFileName))) {
+                writer.write(report);
+            }
+
+            // Print the report content to the console
+            System.out.println(report);
+
+        } catch (SQLException e) {
+            System.out.println("SQL error while generating country population report for " + countryName + ": " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("I/O error while generating country population report for " + countryName + ": " + e.getMessage());
+        }
+    }
+
+    public void generateRegionPopulationReport(String region) {
+        long totalPopulation = 0;
+
+        try {
+            Statement stmt = con.createStatement();
+
+            // SQL query to fetch the total population for a specific region
+            String sql = "SELECT population FROM country WHERE region = '" + region + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            // Sum up the population of countries in the specified region
+            while (rset.next()) {
+                totalPopulation += rset.getLong("population");
+            }
+
+            // Create the report content
+            StringBuilder report = new StringBuilder();
+            report.append("Total Population of ").append(region).append(": ").append(totalPopulation).append("\n");
+
+            // Ensure the output folder exists
+            new File("./output/").mkdir();
+
+            // Write the report to a file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/" + region.replace(" ", "_") + "PopulationReport.txt"));
+            writer.write(report.toString());
+            writer.close();
+
+            // Print the report content to console
+            System.out.println(report.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error generating population report for " + region + ": " + e.getMessage());
+        }
+    }
+
+    public void generateDistrictPopulationReport(String districtName) {
+        long totalPopulation = 0;
+
+        try {
+            Statement stmt = con.createStatement();
+
+            // SQL query to fetch the total population for a specific district
+            String sql = "SELECT population FROM city WHERE district = '" + districtName + "'";
+            ResultSet rset = stmt.executeQuery(sql);
+
+            // Sum up the population of cities in the specified district
+            while (rset.next()) {
+                totalPopulation += rset.getLong("population");
+            }
+
+            // Create the report content
+            StringBuilder report = new StringBuilder();
+            report.append("Total Population of ").append(districtName).append(": ").append(totalPopulation).append("\n");
+
+            // Ensure the output folder exists
+            new File("./output/").mkdir();
+
+            // Write the report to a file
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/" + districtName.replace(" ", "_") + "PopulationReport.txt"));
+            writer.write(report.toString());
+            writer.close();
+
+            // Print the report content to console
+            System.out.println(report.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error generating population report for district " + districtName + ": " + e.getMessage());
+        }
+    }
+
+    public void generateCityPopulationReport(String cityName) {
+        long population = 0;
+
+        try {
+            Statement stmt = con.createStatement();
+
+            // SQL query to fetch the population of a specific city
+            String sql = "SELECT population FROM city WHERE name = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, cityName);
+            ResultSet rset = pstmt.executeQuery();
+
+            if (rset.next()) {
+                population = rset.getLong("population");
+            } else {
+                System.out.println("City " + cityName + " not found.");
+                return;
+            }
+
+            String report = "Population of " + cityName + ": " + population + "\n";
+
+            // Ensure the output folder exists
+            File outputDir = new File("./output/");
+            if (!outputDir.exists()) {
+                outputDir.mkdir();
+            }
+
+            // Write the report to a file
+            String reportFileName = "./output/" + cityName.replace(" ", "_") + "PopulationReport.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(reportFileName))) {
+                writer.write(report);
+            }
+
+            // Print the report content to the console
+            System.out.println(report);
+
+        } catch (SQLException e) {
+            System.out.println("SQL error while generating city population report for " + cityName + ": " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("I/O error while generating city population report for " + cityName + ": " + e.getMessage());
+        }
+    }
+
+    public void generateTopNPopulatedCountriesReport(String continent, int n) {
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = String.format(
+                    "SELECT Name, Population, " +
+                            "(SELECT SUM(Population) FROM city WHERE CountryCode = country.Code) AS PopulationInCities " +
+                            "FROM country " +
+                            "WHERE Continent = '%s' " +
+                            "ORDER BY Population DESC LIMIT %d",
+                    continent, n
+            );
+            ResultSet rset = stmt.executeQuery(sql);
+
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                long totalPopulation = rset.getLong("Population");
+                long cityPopulation = rset.getLong("PopulationInCities");
+                long ruralPopulation = totalPopulation - cityPopulation;
+                double cityPopulationPercentage = (cityPopulation * 100.0) / totalPopulation;
+                double ruralPopulationPercentage = (ruralPopulation * 100.0) / totalPopulation;
+
+                Country country = new Country();
+                country.setName(name);
+                country.setPopulation(totalPopulation);
+                countries.add(country);
+
+                // Print or save the details
+                System.out.printf(
+                        "Country: %s, Total: %d, City: %d (%.2f%%), Rural: %d (%.2f%%)\n",
+                        name, totalPopulation, cityPopulation, cityPopulationPercentage,
+                        ruralPopulation, ruralPopulationPercentage
+                );
+            }
+
+            // Save report to a file
+            StringBuilder report = new StringBuilder();
+            report.append(String.format("Top %d Most Populated Countries in %s:\n", n, continent));
+            for (Country country : countries) {
+                report.append(String.format(
+                        "Country: %s, Total: %d\n",
+                        country.getName(), country.getPopulation()
+                ));
+            }
+            new File("./output/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/Top" + n + "PopulatedCountries_" + continent + ".txt"));
+            writer.write(report.toString());
+            writer.close();
+
+        } catch (Exception e) {
+            System.out.println("Error generating top N populated countries report: " + e.getMessage());
+        }
+    }
+
+    public void generateTopNPopulatedCountriesInRegion(String region, int n) {
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = String.format(
+                    "SELECT Name, Population, " +
+                            "(SELECT SUM(Population) FROM city WHERE CountryCode = country.Code) AS PopulationInCities " +
+                            "FROM country " +
+                            "WHERE Region = '%s' " +
+                            "ORDER BY Population DESC LIMIT %d",
+                    region, n
+            );
+            ResultSet rset = stmt.executeQuery(sql);
+
+            long totalRegionPopulation = 0;
+            long totalCityPopulation = 0;
+
+            // First pass to gather data for the top N countries
+            while (rset.next()) {
+                String name = rset.getString("Name");
+                long totalPopulation = rset.getLong("Population");
+                long cityPopulation = rset.getLong("PopulationInCities");
+                long ruralPopulation = totalPopulation - cityPopulation;
+                double cityPopulationPercentage = (cityPopulation * 100.0) / totalPopulation;
+                double ruralPopulationPercentage = (ruralPopulation * 100.0) / totalPopulation;
+
+                Country country = new Country();
+                country.setName(name);
+                country.setPopulation(totalPopulation);
+                countries.add(country);
+
+                // Update region-wide population totals
+                totalRegionPopulation += totalPopulation;
+                totalCityPopulation += cityPopulation;
+
+                // Print details for each country
+                System.out.printf("Country: %s, Total Population: %d, City Population: %d (%.2f%%), Rural Population: %d (%.2f%%)\n",
+                        name, totalPopulation, cityPopulation, cityPopulationPercentage,
+                        ruralPopulation, ruralPopulationPercentage
+                );
+            }
+
+            // Calculate region-wide population percentages
+            long ruralRegionPopulation = totalRegionPopulation - totalCityPopulation;
+            double cityRegionPercentage = (totalCityPopulation * 100.0) / totalRegionPopulation;
+            double ruralRegionPercentage = (ruralRegionPopulation * 100.0) / totalRegionPopulation;
+
+            // Save report to a file
+            StringBuilder report = new StringBuilder();
+            report.append(String.format("Top %d Most Populated Countries in %s:\n", n, region));
+            report.append(String.format("Total Population of Region: %d\n", totalRegionPopulation));
+            report.append(String.format("Total Population in Cities: %d (%.2f%%)\n", totalCityPopulation, cityRegionPercentage));
+            report.append(String.format("Total Population in Rural Areas: %d (%.2f%%)\n", ruralRegionPopulation, ruralRegionPercentage));
+            report.append("\n");
+
+            for (Country country : countries) {
+                report.append(String.format("Country: %s, Total Population: %d\n", country.getName(), country.getPopulation()));
+            }
+
+            new File("./output/").mkdir();
+            BufferedWriter writer = new BufferedWriter(
+                    new FileWriter("./output/Top" + n + "PopulatedCountries_" + region + ".txt"));
+            writer.write(report.toString());
+            writer.close();
+
+        } catch (Exception e) {
+            System.out.println("Error generating top N populated countries report: " + e.getMessage());
         }
     }
 

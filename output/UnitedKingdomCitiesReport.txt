@@ -1,0 +1,82 @@
+Cities in the United Kingdom sorted by population:
+London (England): 7285000
+Birmingham (England): 1013000
+Glasgow (Scotland): 619680
+Liverpool (England): 461000
+Edinburgh (Scotland): 450180
+Sheffield (England): 431607
+Manchester (England): 430000
+Leeds (England): 424194
+Bristol (England): 402000
+Cardiff (Wales): 321000
+Coventry (England): 304000
+Leicester (England): 294000
+Bradford (England): 289376
+Belfast (North Ireland): 287500
+Nottingham (England): 287000
+Kingston upon Hull (England): 262000
+Plymouth (England): 253000
+Stoke-on-Trent (England): 252000
+Wolverhampton (England): 242000
+Derby (England): 236000
+Swansea (Wales): 230000
+Southampton (England): 216000
+Aberdeen (Scotland): 213070
+Northampton (England): 196000
+Dudley (England): 192171
+Portsmouth (England): 190000
+Newcastle upon Tyne (England): 189150
+Sunderland (England): 183310
+Luton (England): 183000
+Swindon (England): 180000
+Southend-on-Sea (England): 176000
+Walsall (England): 174739
+Bournemouth (England): 162000
+Brighton (England): 156124
+Peterborough (England): 156000
+Blackpool (England): 151000
+Reading (England): 148000
+Dundee (Scotland): 146690
+West Bromwich (England): 146386
+Oldbury/Smethwick (Warley) (England): 145542
+Middlesbrough (England): 145000
+Oxford (England): 144000
+Huddersfield (England): 143726
+Poole (England): 141000
+Blackburn (England): 140000
+Bolton (England): 139020
+Newport (Wales): 139000
+Preston (England): 135000
+Stockport (England): 132813
+Norwich (England): 124000
+Rotherham (England): 121380
+Cambridge (England): 121000
+Ipswich (England): 114000
+Watford (England): 113080
+Slough (England): 112000
+Exeter (England): 111000
+Gloucester (England): 107000
+Saint Helens (England): 106293
+Sutton Coldfield (England): 106001
+Cheltenham (England): 106000
+York (England): 104425
+Oldham (England): 103931
+Basildon (England): 100924
+Worthing (England): 100000
+Chelmsford (England): 97451
+Crawley (England): 97000
+Colchester (England): 96063
+Worcester (England): 95000
+Solihull (England): 94531
+Rochdale (England): 94313
+Birkenhead (England): 93087
+Gillingham (England): 92000
+Hartlepool (England): 92000
+Woking/Byfleet (England): 92000
+Halifax (England): 91069
+Southport (England): 90959
+Maidstone (England): 90878
+Eastbourne (England): 90000
+Grimsby (England): 89000
+Saint Helier (Jersey): 27523
+Douglas (–): 23487
