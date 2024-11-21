@@ -264,14 +264,47 @@ public class AppIntegrationTest {
             System.out.println(country.getName() + ": " + country.getPopulation());
         }
     }
+    @Test
+    void testGenerateLanguageReport() {
+        try {
+            // Call the generateLanguageReport method
+            ArrayList<countrylanguage> languageReports = app.generateLanguageReport();
 
+            // Ensure the list is not null or empty
+            assertNotNull(languageReports, "Language reports should not be null");
+            assertFalse(languageReports.isEmpty(), "Language reports should not be empty");
 
+            // Print the reports for debugging (only language, count, and percentage)
+            for (countrylanguage report : languageReports) {
+                System.out.println("Language: " + report.getLanguage() +
+                        ", Count: " + report.getCount() +
+                        ", Percentage: " + String.format("%.2f", report.getPercentage()) + "%");
+            }
 
+            // Example assertion to verify at least one language report exists
+            assertTrue(languageReports.size() > 0, "There should be at least one language report");
+
+            // Additional assertions can verify specific values if expected results are known
+            // Example: Check for Chinese language in the result
+            assertTrue(languageReports.stream().anyMatch(report -> report.getLanguage().equals("Chinese")),
+                    "The report should include data for Chinese language");
+
+        } catch (Exception e) {
+            fail("An exception occurred during the test: " + e.getMessage());
+        }
+    }
 
 
 
 
 }
+
+
+
+
+
+
+
 
 
 

@@ -578,6 +578,7 @@ public class App {
 
         return result;
     }
+
     public List<Object> report9() {
         /** List to store continents with their aggregated population data **/
         ArrayList<String> continents = new ArrayList<>();
@@ -637,6 +638,7 @@ public class App {
 
         return result;
     }
+
     public ArrayList<Country> report2withn(int n) {
         ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
         try {
@@ -677,15 +679,65 @@ public class App {
         return countries; /** Return the list of Country objects **/
     }
 
+    public ArrayList<countrylanguage> generateLanguageReport() {
+        Map<String, Integer> languageCounts = new HashMap<>();
+        Map<String, String> countryCodes = new HashMap<>();
+        Map<String, Boolean> isOfficial = new HashMap<>();
+        int totalRecords = 0;
 
+        ArrayList<countrylanguage> languageReports = new ArrayList<>();
 
+        try {
+            Statement stmt = con.createStatement();
 
+            // SQL query to get language information (including country code and whether it's official)
+            String sql = "SELECT cl.language, cl.countrycode, cl.isofficial " +
+                    "FROM city ci " +
+                    "JOIN countrylanguage cl ON ci.CountryCode = cl.countrycode " +
+                    "WHERE cl.language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')";
 
+            ResultSet rset = stmt.executeQuery(sql);
 
+            // Ensure that data is returned
+            if (!rset.next()) {
+                System.out.println("No records found for the query.");
+            }
 
+            // Process the result set to count occurrences of each language and capture country code & official status
+            do {
+                String language = rset.getString("language");
+                String countryCode = rset.getString("countrycode");
+                String isOfficialString = rset.getString("isofficial");
+                boolean isOfficialLanguage = isOfficialString != null && isOfficialString.equalsIgnoreCase("T");
 
+                // Track the language count
+                languageCounts.put(language, languageCounts.getOrDefault(language, 0) + 1);
+                countryCodes.put(language, countryCode); // Map country code for the language
+                isOfficial.put(language, isOfficialLanguage); // Track if language is official
+                totalRecords++;
+            } while (rset.next());
 
+            // Calculate and output the percentage for each language
+            for (Map.Entry<String, Integer> entry : languageCounts.entrySet()) {
+                String language = entry.getKey();
+                int count = entry.getValue();
+                double percentage = (totalRecords == 0) ? 0.0 : ((double) count / totalRecords) * 100;
 
+                // Add the language report with additional details
+                languageReports.add(new countrylanguage(language, count, percentage,
+                        countryCodes.get(language), isOfficial.get(language)));
+            }
+
+            // Sort the language reports by percentage in descending order
+            languageReports.sort((report1, report2) -> Double.compare(report2.getPercentage(), report1.getPercentage()));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to generate language report");
+        }
+
+        return languageReports;
+    }
 
 
 
@@ -694,3 +746,21 @@ public class App {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
