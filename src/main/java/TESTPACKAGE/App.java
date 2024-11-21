@@ -205,6 +205,41 @@ public class App {
             System.out.println(country.getName() + ": " + country.getPopulation());
         }
     }
+    public void printCountryReport1(ArrayList<Country> countries) {
+        if (countries == null) {
+            System.out.println("No countries found");
+            return;
+        }
+
+        countries.sort((country1, country2) -> Long.compare(country2.getPopulation(), country1.getPopulation()));
+
+        // Printing country report
+        System.out.println("Country Report:");
+        for (Country country : countries) {
+            System.out.printf("Code: %-5s Name: %-20s Continent: %-15s Region: %-15s Population: %-15d Surface Area: %-10.2f Life Expectancy: %-5.2f GNP: %-15.2f Head of State: %-20s%n",
+                    country.getCode(), country.getName(), country.getContinent(), country.getRegion(), country.getPopulation(),
+                    country.getSurfaceArea(), country.getLifeExpectancy(), country.getGnp(), country.getHeadOfState());
+        }
+    }
+    public void printCityReport1(ArrayList<City> cities) {
+        if (cities == null) {
+            System.out.println("No cities found");
+            return;
+        }
+
+        // Print the header for the city report
+        System.out.println("City Report:");
+        System.out.printf("%-10s %-20s %-10s %-15s %-15s%n", "City ID", "City Name", "Country Code", "District", "Population");
+        System.out.println("------------------------------------------------------------");
+
+        // Loop through each city and print its details
+        for (City city : cities) {
+            System.out.printf("%-10d %-20s %-10s %-15s %-15d%n", city.getId(), city.getName(), city.getCountryCode(),
+                    city.getDistrict(), city.getPopulation());
+        }
+    }
+
+
 
     public ArrayList<City> getCitiesByContinent(String continent) {
         ArrayList<City> cities = new ArrayList<>();
