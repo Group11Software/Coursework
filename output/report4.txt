@@ -1,0 +1,5 @@
+BMU	Bermuda	65000	North America	North America	191
+CAN	Canada	31147000	North America	North America	1822
+GRL	Greenland	56000	North America	North America	917
+SPM	Saint Pierre and Miquelon	7000	North America	North America	3067
+USA	United States	278357000	North America	North America	3813
