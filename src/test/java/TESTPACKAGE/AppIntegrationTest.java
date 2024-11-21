@@ -6,11 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AppIntegrationTest {
 
@@ -249,6 +245,26 @@ public class AppIntegrationTest {
             System.out.println("---------------");
         }
     }
+    @Test
+    void CountryLargestToSmallestRegionswithn() {
+        Scanner scanner = new Scanner(System.in);
+
+        /** Ask the user how many top countries they want **/
+        int n = 5;
+
+        /** Fetch the list of top N countries **/
+        ArrayList<Country> countries = app.report2withn(n);
+
+        /** Ensure the list is not null **/
+        assertNotNull(countries, "Country list should not be null");
+
+        /** Print the sorted list for debugging **/
+        System.out.println("Top " + n + " countries by population:");
+        for (Country country : countries) {
+            System.out.println(country.getName() + ": " + country.getPopulation());
+        }
+    }
+
 
 
 

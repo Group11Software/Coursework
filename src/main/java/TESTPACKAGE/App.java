@@ -637,6 +637,46 @@ public class App {
 
         return result;
     }
+    public ArrayList<Country> report2withn(int n) {
+        ArrayList<Country> countries = new ArrayList<>(); /** List to store countries **/
+        try {
+            /** Create an SQL statement **/
+            Statement stmt = con.createStatement();
+            /** SQL query to get top N countries by population **/
+            String sql = "SELECT name, population FROM country ORDER BY population DESC LIMIT " + n;
+            /** Execute SQL statement **/
+            ResultSet rset = stmt.executeQuery(sql);
+
+            /** Loop through the result set **/
+            while (rset.next()) {
+                String name = rset.getString("name");
+                long population = rset.getLong("population");
+
+                /** Create new Country object and set the name and population **/
+                Country country = new Country();
+                country.setName(name);
+                country.setPopulation(population);
+
+                /** Add the Country object to the list **/
+                countries.add(country);
+            }
+
+            /** Optionally write to a file for debugging or logging **/
+            new File("./output/").mkdir(); /** Create output folder if not exist **/
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("./output/report2.txt"))) {
+                /** loops through all countries **/
+                for (Country country : countries) {
+                    writer.write(country.getName() + "\t" + country.getPopulation() + "\r\n");
+                }
+            }
+            /** throws an error if fail **/
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to retrieve country details");
+        }
+        return countries; /** Return the list of Country objects **/
+    }
+
 
 
 
