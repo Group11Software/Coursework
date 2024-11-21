@@ -395,7 +395,7 @@ public class AppIntegrationTest {
      * Integration test for - Top N (5) city populations of Asia
      */
     @Test
-    public void testTopNPopulatedCountriesInContinent() {
+    public void testTopNPopulatedCountriesInContinent1() {
         String continent = "Asia";
         int n = 5;
 
@@ -424,7 +424,7 @@ public class AppIntegrationTest {
      * Integration test for - Top N(3) countries in the region Caribbean
      */
     @Test
-    public void testTopNPopulatedCountriesInRegion() {
+    public void testTopNPopulatedCountriesInRegion1() {
         String region = "Caribbean";
         int n = 3;
 
@@ -727,6 +727,180 @@ public class AppIntegrationTest {
         for (int i = 1; i < cities.size(); i++) {
             assertTrue(cities.get(i - 1).getPopulation() >= cities.get(i).getPopulation(),
                     "Cities are not sorted correctly by population");
+        }
+    }
+    @Test
+    public void testTopNPopulatedCountriesInContinent() {
+        String continent = "Asia";
+        int n = 5;
+
+        // Generate the report
+        app.generateTopNPopulatedCountriesReport(continent, n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dPopulatedCountries_%s.txt", n, continent);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        // Verify the report contains the continent name and data for N countries
+        assertTrue(reportContent.toString().contains("Top 5 Most Populated Countries in Asia"),
+                "The report does not contain the expected title.");
+        assertTrue(reportContent.toString().split("\n").length > n,
+                "The report does not list the expected number of countries.");
+    }
+
+    @Test
+    public void testTopNPopulatedCountriesInRegion() {
+        String region = "Caribbean";
+        int n = 3;
+
+        // Generate the report
+        app.generateTopNPopulatedCountriesInRegion(region, n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dPopulatedCountries_%s.txt", n, region);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        // Verify the report contains the region name and data for N countries
+        assertTrue(reportContent.toString().contains("Top 3 Most Populated Countries in Caribbean"),
+                "The report does not contain the expected title.");
+        assertTrue(reportContent.toString().contains("Total Population of Region:"),
+                "The report does not contain the total population of the region.");
+        assertTrue(reportContent.toString().contains("Total Population in Cities:"),
+                "The report does not contain the total city population data.");
+        assertTrue(reportContent.toString().contains("Total Population in Rural Areas:"),
+                "The report does not contain the rural population data.");
+        assertTrue(reportContent.toString().split("\n").length >= n + 4,
+                "The report does not list the expected number of cities.");
+
+    }
+
+    @Test
+    public void testTopNPopulatedCitiesInRegion() {
+        String region = "Caribbean";
+        int n = 4;
+
+        // Generate the report
+        app.generateTopNPopulatedCitiesInRegion(region, n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dPopulatedCities_%s.txt", n, region);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        // Verify the report contains the region name and data for N cities
+        assertTrue(reportContent.toString().contains("Top 4 Most Populated Cities in Caribbean"),
+                "The report does not contain the expected title.");
+        assertTrue(reportContent.toString().split("\n").length > n,  // Include header row
+                "The report does not list the expected number of cities.");
+    }
+
+    @Test
+    public void testTopNPopulatedCitiesInCountry() {
+        String countryCode = "USA";
+        int n = 3;
+
+        // Generate the report
+        app.generateTopNPopulatedCitiesInCountry(countryCode, n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dPopulatedCities_%s.txt", n, countryCode);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+
+        // Verify the report contains the country code and data for N cities
+        assertTrue(reportContent.toString().contains("Top 3 Most Populated Cities in USA"),
+                "The report does not contain the expected title.");
+
+        // Adjust the expected number of lines based on the presence of the separator line
+        int expectedLines = (reportContent.toString().contains("================================================================================")) ? n + 4 : n + 3;
+
+
+    }
+
+    @Test
+    public void testTopNCitiesInKyotoDistrict() {
+        // Test with N = 4
+        int n = 4;
+
+        // Fetch top N cities from Kyoto district
+        app.generateTopNDistrictCitiesReport(n);
+
+        // Validate the output
+        String reportFilePath = String.format("./output/Top%dCities_Kyoto.txt", n);
+        StringBuilder reportContent = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(reportFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                reportContent.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Error reading the report file");
+        }
+        // Check if the report contains the title
+        assertTrue(reportContent.toString().contains("Top " + n + " Cities in Kyoto District Sorted by Population"),
+                "The report does not contain the expected title.");
+
+        // Verify the number of cities is as expected
+        assertTrue(reportContent.toString().split("\n").length >= n + 1, // +1 for header
+                "The report does not list the expected number of cities.");
+
+        // Optionally, verify that the cities are sorted by population in descending order
+        String[] reportLines = reportContent.toString().split("\n");
+        ArrayList<Long> populations = new ArrayList<>();
+        for (String line : reportLines) {
+            if (line.contains(":")) {
+                String populationStr = line.substring(line.lastIndexOf(":") + 1).trim();
+                try {
+                    long population = Long.parseLong(populationStr);
+                    populations.add(population);
+                } catch (NumberFormatException e) {
+                }
+            }
+        }
+
+        // Verify that the populations are sorted in descending order
+        for (int i = 1; i < populations.size(); i++) {
+            assertTrue(populations.get(i - 1) >= populations.get(i), "Cities are not sorted correctly by population");
         }
     }
 
