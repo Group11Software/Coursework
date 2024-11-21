@@ -46,9 +46,9 @@ public class AppTest {
     void testCityConstructorAndGettersWithReport() {
 
         ArrayList<City> cities = new ArrayList<>();
-        City city1 = new City(1, "Los Angelos", "USA", "Us", 3800000);
+        City city1 = new City(1, "Los Angeles", "USA", "California", 3800000);
         City city2 = new City(2, "Dawson City", "CAN", "Yukon", 1577);
-        City city3 = new City(3, "Tequila", "MEX", "jalisco", 44353);
+        City city3 = new City(3, "Tequila", "MEX", "Jalisco", 44353);
         cities.add(city1);
         cities.add(city2);
         cities.add(city3);
@@ -56,24 +56,24 @@ public class AppTest {
         app.printCityReport(cities);
 
         assertEquals(1, city1.getId());
-        assertEquals("CityA", city1.getName());
+        assertEquals("Los Angeles", city1.getName());
         assertEquals("USA", city1.getCountryCode());
-        assertEquals("DistrictA", city1.getDistrict());
-        assertEquals(100000, city1.getPopulation());
+        assertEquals("California", city1.getDistrict());
+        assertEquals(3800000, city1.getPopulation());
 
         assertEquals(2, city2.getId());
-        assertEquals("CityB", city2.getName());
+        assertEquals("Dawson City", city2.getName());
         assertEquals("CAN", city2.getCountryCode());
-        assertEquals("DistrictB", city2.getDistrict());
-        assertEquals(200000, city2.getPopulation());
+        assertEquals("Yukon", city2.getDistrict());
+        assertEquals(1577, city2.getPopulation());
 
         assertEquals(3, city3.getId());
-        assertEquals("CityC", city3.getName());
+        assertEquals("Tequila", city3.getName());
         assertEquals("MEX", city3.getCountryCode());
-        assertEquals("DistrictC", city3.getDistrict());
-        assertEquals(300000, city3.getPopulation());
-
+        assertEquals("Jalisco", city3.getDistrict());
+        assertEquals(44353, city3.getPopulation());
     }
+
 
     /**
      * unit test to test if countries getters and setters works
