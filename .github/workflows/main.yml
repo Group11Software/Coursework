@@ -1,6 +1,7 @@
 name: A workflow for my App
 on: push
 
+
 jobs:
   UnitTests:
     name: Unit Test Build Action
@@ -53,3 +54,12 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
+      - name: view logs
+        run: docker logs coursework-world-1
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "latest"
+          files: |
+            ./target/*.jar
