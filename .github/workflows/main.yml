@@ -1,7 +1,6 @@
 name: A workflow for my App
 on: push
-permissions:
-  contents: write
+
 
 jobs:
   UnitTests:
