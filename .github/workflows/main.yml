@@ -53,6 +53,8 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
+      - name: view logs
+        run: docker logs TESTPACKAGE-app-1
       - name: Release On GitHub
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
