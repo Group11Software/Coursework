@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: 'Bug template'
 labels: bug
 assignees: Kester99, 40682339, MutantAc, Lewishay21
 
