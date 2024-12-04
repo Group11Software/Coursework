@@ -55,12 +55,12 @@ jobs:
           docker compose up --abort-on-container-exit
       - name: View logs
         run: docker logs devops3-app-1
-      - name: Release on GitHub  # Step added to release the JAR to GitHub
+      - name: Release on GitHub
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false  # Set to true if you want it to be a prerelease
-          automatic_release_tag: "New Release"  # Adjust the release tag as needed
+          prerelease: false
+          automatic_release_tag: "New Release"
           files: |
             ./target/group11-1.0-SNAPSHOT-jar-with-dependencies.jar  # Ensure this path is correct based on your Maven build output   
   
