@@ -1,0 +1,8 @@
+Top 3 Most Populated Countries in Caribbean:
+Total Population of Region: 27918000
+Total Population in Cities: 8585539 (30.75%)
+Total Population in Rural Areas: 19332461 (69.25%)
+
+Country: Cuba, Total Population: 11201000
+Country: Dominican Republic, Total Population: 8495000
+Country: Haiti, Total Population: 8222000
