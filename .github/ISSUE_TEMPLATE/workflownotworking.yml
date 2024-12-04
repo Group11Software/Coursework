@@ -4,7 +4,7 @@ title: "[Bug]: "
 labels: ["bug", "triage"]
 projects: ["octo-org/1", "octo-org/44"]
 assignees:
-  - octocat
+  - Kester Webster
 body:
   - type: markdown
     attributes:
@@ -39,15 +39,15 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: users
     attributes:
       label: What browsers are you seeing the problem on?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - Lewis
+        - Seb
+        - Angelo
+        - Kester
   - type: textarea
     id: logs
     attributes:
