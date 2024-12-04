@@ -62,4 +62,4 @@ jobs:
           prerelease: false
           automatic_release_tag: "latest"
           files:
-            ./target/
+            ./target/group11-jar-with-dependencies.jar
