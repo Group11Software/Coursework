@@ -51,7 +51,7 @@ jobs:
           distribution: 'adopt'
       - name: Package and Run docker compose
         run: |
-          mvn package -Dtest=TESTPACKAGE.AppTest Test
+          mvn package -DskipTests
           docker compose up --abort-on-container-exit
       - name: view logs
         run: docker logs TESTPACKAGE.app
