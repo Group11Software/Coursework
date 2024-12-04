@@ -40,7 +40,6 @@ jobs:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04
     steps:
-      -  permissions: write-all
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -54,6 +53,8 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
+      - name: view logs
+        run: docker logs coursework-world-1
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
